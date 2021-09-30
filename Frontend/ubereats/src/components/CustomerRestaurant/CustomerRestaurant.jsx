@@ -1,8 +1,8 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 // import Form from "./Form.jsx";
-import Dashboard from "../LandingPage/Dashboard.jsx";
-import Dishes from "../LandingPage/Dishes.jsx";
+import CustomerDashboard from "./CustomerDashboard.jsx";
+import CustomerDishes from "./CustomerDishes.jsx";
 import Navbar from "../Customer/Navbar.jsx"
 
 function CustomerRestaurant (){
@@ -15,10 +15,10 @@ function CustomerRestaurant (){
         <div className="conatiner-fluid">
         <Navbar />
         <div className="dash">
-        <Dashboard />
+        <CustomerDashboard />
         </div>
         <div>
-        <Dishes />
+        <CustomerDishes />
         </div>
         </div>
 

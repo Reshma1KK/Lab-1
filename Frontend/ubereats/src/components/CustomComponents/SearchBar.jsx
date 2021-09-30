@@ -3,10 +3,13 @@ import "./Searchbar.css";
 import {Col} from "react-bootstrap";
 import Restaurant from "../Customer/Restaurant.js"
 import Axios from "axios"
+import CustomerDish from "../CustomerRestaurant/CustomerDish.js"
 
 function SearchBar() {
 
    const [restaurants,getRestuarants]=useState([]);
+
+   const [dishes,getDishes]=useState([]);
 
     const[searchTerm,setSearchTerm]=useState("");
 
@@ -14,6 +17,10 @@ function SearchBar() {
 
     useEffect(() => {
       getAllRestaurants();
+    },[]);
+
+    useEffect(() => {
+      getAllDishes();
     },[]);
 
   const getAllRestaurants = () =>{
@@ -24,6 +31,19 @@ function SearchBar() {
     })
     .catch(error =>
       console.error(`Error:{error}`));
+  }
+
+  const getAllDishes = () => {
+    // Axios.get("http://localhost:3001/Dishes.jsx")
+    // .then(response => console.log(response))
+    // .catch(err => console.log("failed:",err));
+      Axios.get("http://localhost:3001/Dishes")
+      .then((response) => {
+        const allDishes=response.data.dishes;
+          getDishes(allDishes);
+      })
+      .catch(error =>
+        console.error(`Error:{error}`));
   }
 
   return(
@@ -69,6 +89,19 @@ function SearchBar() {
              </Col>
           )
         })}
+        {dishes.filter(function(dish) {
+       if(searchTerm===""){
+         return false;
+       }
+       else if((dish.dish_name.toLowerCase().includes(searchTerm.toLowerCase()))) {
+       return true;
+     }}).map(function(dish){
+       return(<Col sm={12} md={6} lg={4} key={dish.id}>
+         <CustomerDish dish={dish} />
+         </Col>
+      )
+    })}
+
           </div>
   )
 }

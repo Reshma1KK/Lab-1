@@ -17,7 +17,7 @@ function NavBar() {
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/RestaurantLanding">Profile</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link" href="http://localhost:3000/">LogOut</a>
+        <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>LogOut</a>
         </li>
       </ul>
     </div>

@@ -23,7 +23,7 @@ function RestaurantDisplay(){
       console.error(`Error:{error}`));
   }
 
-  
+
 
   // var resNear = restaurants.filter(function(restaurant) {
   //   if (!(restaurant.location).includes(JSON.parse(localStorage.getItem("user"))[0]["city"])) {

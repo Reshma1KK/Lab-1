@@ -259,11 +259,11 @@ app.put("/EditCustomerProfile", (req,res) => {
   const nickName=req.body.nickName;
   const email=req.body.email;
   const phone=req.body.phone;
-  const sqlUpdate = "UPDATE customer_signUp SET email_id=?, date_of_birth=?, contact=?, city=?, state=?, country=?, nickname=? WHERE name=?";
-  connection.query(sqlUpdate,[email,dob,phone,city,state,country,nickName,customerName], (err,result) =>{
+  const sqlUpdate = "UPDATE customer_signUp SET email_id=?, date_of_birth=?, contact=?, city=?, state=?, nickname=? WHERE name=?";
+  connection.query(sqlUpdate,[email,dob,phone,city,state,nickName,customerName], (err,result) =>{
     if(err){
       console.log("error");
-      res.end({err:err});
+      res.send({err:`err`});
     }
     else{
       console.log("Update done!")

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import NavBar from "../LogOut/NavBar.jsx";
 import {alert} from "react"
+import Links from "../LogOut/link.js"
 
 
 function CustomerSignup () {
@@ -76,7 +77,7 @@ function CustomerSignup () {
 
   return(
       <div>
-      <NavBar />
+      <NavBar/>
       <h1 className="customer-heading">Uber <span className="heading-eats">Eats</span></h1>
       <h1 className="form-floating">Customer SignUp</h1>
       <div className="form-floating">
