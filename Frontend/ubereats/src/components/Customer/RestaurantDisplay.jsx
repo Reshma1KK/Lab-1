@@ -4,6 +4,7 @@ import {Row,Col} from "react-bootstrap";
 import Restaurant from "./Restaurant.js"
 // import RestaurantsNearYou from "./RestaurantsNearYou.js"
 import SearchBar from "../CustomComponents/SearchBar.jsx"
+import Filter from "../CustomComponents/Filter.js"
 
 
 function RestaurantDisplay(){
@@ -35,8 +36,17 @@ function RestaurantDisplay(){
 
   return(
     <Fragment>
-    <Row>
+    <Row className="row">
+    <div col className="col-6">
+    <Col style={{justifyContent:"left"}}>
+    <Filter />
+    </Col>
+    </div>
+    <div col className="col-6">
+    <Col style={{justifyContent:"right"}}>
     <SearchBar />
+    </Col>
+    </div>
     </Row>
       <Row>
       <h3 style={{padding:"3%"}}>Restaurants Near You:</h3>

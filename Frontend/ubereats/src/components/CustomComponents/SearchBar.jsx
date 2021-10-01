@@ -81,28 +81,34 @@ function SearchBar() {
            if(searchTerm===""){
              return false;
            }
-           else if((restaurant.location.toLowerCase().includes(searchTerm.toLowerCase())) || (restaurant.description.toLowerCase().includes(searchTerm.toLowerCase()))) {
+           else if(((restaurant.location.toLowerCase()).includes(searchTerm.toLowerCase()))
+           || ((restaurant.description.toLowerCase()).includes(searchTerm.toLowerCase()))
+           || ((restaurant.restaurantName.toLowerCase()).includes(searchTerm.toLowerCase()))) {
            return true;
           }}).map(function(restaurant){
-           return(<Col sm={8} md={4} lg={3} key={restaurant.id}>
+           return(<Col sm={12} md={6} lg={4} key={restaurant.id}>
              <Restaurant restaurant={restaurant} />
              </Col>
           )
-        })}
-        {dishes.filter(function(dish) {
-       if(searchTerm===""){
-         return false;
-       }
-       else if((dish.dish_name.toLowerCase().includes(searchTerm.toLowerCase()))) {
-       return true;
-     }}).map(function(dish){
-       return(<Col sm={12} md={6} lg={4} key={dish.id}>
-         <CustomerDish dish={dish} />
-         </Col>
-      )
-    })}
+        })
+      }
+      {restaurants.filter(function(restaurant) {
+     if(searchTerm===""){
+       return false;
+     }
+     else if(((restaurant.dishes.toLowerCase()).includes(searchTerm.toLowerCase()))) {
+     return true;
+   }}).map(function(restaurant){
+     return(<Col sm={12} md={6} lg={4} key={restaurant.id}>
+       <Restaurant restaurant={restaurant} />
+       </Col>
+    )
+  })
+}
 
-          </div>
+
+    </div>
+
   )
 }
 

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import NavBar from "../LogOut/NavBar.jsx";
+import {alert} from "react";
 
 function RestaurantSignup() {
 
@@ -27,11 +28,12 @@ function RestaurantSignup() {
         }).then (() =>{
         alert("Successfully Inserted");
           })
-        setrestaurantName("");
-        setEmail("");
-        setrestaurantPassword("");
-        setrestaurantLocation("");
+        window.open("./RestaurantLogin","_self");
       }
+      setrestaurantName("");
+      setEmail("");
+      setrestaurantPassword("");
+      setrestaurantLocation("");
     }
 
       const formValidation = () => {

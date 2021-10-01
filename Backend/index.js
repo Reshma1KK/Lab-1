@@ -272,7 +272,7 @@ app.put("/EditCustomerProfile", (req,res) => {
 })
 
 app.get("/RestaurantDisplay",(req,res) => {
-  const sqlSELECT="SELECT id,restaurantName,location, picture, description,contact,timings FROM restaurant_signUp";
+  const sqlSELECT="SELECT id,restaurantName,location, picture, description,contact,timings,dishes,type_of_delivery,type_of_food FROM restaurant_signUp";
   connection.query(sqlSELECT,(err,result) => {
     if(err){
       return res.send(err);

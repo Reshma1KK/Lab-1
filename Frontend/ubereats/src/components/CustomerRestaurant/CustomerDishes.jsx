@@ -41,7 +41,7 @@ function CustomerDishes() {
         <Fragment>
          <Row>
          <hr />
-         <h3 style={{textAlign:"center"}}>Menu:</h3>
+         <h3 style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"50px"}}>Menu</h3>
          <hr />
          {dishes.filter(function(dish) {
            if (!((JSON.parse(localStorage.getItem("res"))["restaurantName"]) === (dish.res_name))) {

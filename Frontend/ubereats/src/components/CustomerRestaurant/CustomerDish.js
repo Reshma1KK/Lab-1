@@ -1,11 +1,12 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React,{useState} from 'react'
+// import {Link} from "react-router-dom";
 
 
 
-function CustomerDish({dish}){
 
+function CustomerDish({dish}) {
 
+  const [count,setCount]=useState(0);
 
 
   return(
@@ -18,13 +19,34 @@ function CustomerDish({dish}){
           <h5 className="card-text">{`${dish.dish_price}`}</h5>
           <h5 className="card-text">{`${dish.dish_description}`}</h5>
           <h5 className="card-text">{`${dish.dish_category}`}</h5>
-          <Link>
-          <button type="button" className="btn btn-success" style={{margin:"10px"}}>Add to Cart</button>
-          </Link>
+
+          <button
+          type="button"
+          className="btn btn-outline-dark minus-btn"
+          style={{borderRadius:"30%",margin:"10px",justifyContent:"center"}}
+          onClick={
+            ()=>{
+              setCount(count-1);
+            }
+          }
+          >-</button>
+          <span id="count">{count}</span>
+          <button
+          type="button"
+          className="btn btn-outline-dark plus-btn"
+          style={{borderRadius:"30%",margin:"10px",justifyContent:"center"}}
+          onClick={
+            ()=>{
+              setCount(count+1);
+            }
+          }
+          >+</button>
+          <button type="button" className="btn btn-outline-success" style={{margin:"10px",borderRadius:"10%"}}>Add to Cart</button>
           </div>
           </div>
     </div>
-  )
+
+  );
 }
 
 
