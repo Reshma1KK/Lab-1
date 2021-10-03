@@ -150,6 +150,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
         return true;
        }}).map(function(restaurant){
         return(<Col sm={48} md={24} lg={12} key={restaurant.id}>
+          <h2>Filter results:</h2>
           <Restaurant restaurant={restaurant} style={{width:"66%"}} />
           </Col>
        )
@@ -170,6 +171,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
       return true;
      }}).map(function(restaurant){
       return(<Col sm={48} md={24} lg={12} key={restaurant.id}>
+        <h2>Filter results:</h2>
         <Restaurant restaurant={restaurant} />
         </Col>
      )

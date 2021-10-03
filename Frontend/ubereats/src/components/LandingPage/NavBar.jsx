@@ -4,7 +4,7 @@ import React from 'react';
 function NavBar() {
 
   return(
-    <div className="restaurant-NavBar">
+    <div className="restaurant-NavBar" style={{position:"fixed",top:0,width:"100%",zIndex:"100"}}>
       <h1 className="heading-home home restuarnt">Uber <span className="heading-eats restuarnt">Eats</span> Business</h1>
       <ul className="nav justify-content-end">
         <li className="nav-item">

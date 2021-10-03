@@ -109,8 +109,8 @@ app.get("/RestaurantSignup", (req, res) => {
     res.send(err);
   });
 });
-const upload = multer();
-app.post("/RestaurantSignup", upload.none(), (req, res) => {
+
+app.post("/RestaurantSignup", (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -296,4 +296,34 @@ app.get("/Restaurant",(req,res) => {
       })
     }
   })
+})
+app.post("/AddtoCart", (req,res) => {
+  const customerName=req.body.customerName ;
+  const customerEmail=req.body.customerEmail ;
+  const dishName=req.body.dishName ;
+  const restaurantName=req.body.restaurantName ;
+  const price=req.body.price ;
+  const dishCategory=req.body.dishCategory ;
+  const sqlInsert ="INSERT INTO cart_items (customer_name,customer_email,dish_name, restaurant_name, price, dish_category) VALUES (?,?,?,?,?,?)";
+  connection.query(sqlInsert,[customerName,customerEmail,dishName,restaurantName,price,dishCategory],(err,result) => {
+    if(err){
+      return console.log(err);
+    }
+    else{
+      return console.log("Inserted successfully!");
+    }
+  })
+})
+app.get("/AddtoCart",(req,res) => {
+  const sqlSELECT= "SELECT * FROM cart_items";
+  connection.query(sqlSELECT, (err, result) => {
+    if(err){
+      return res.send(err);
+    }
+    else{
+      return res.json({
+        dashboard: result
+      })
+    }
+  });
 })

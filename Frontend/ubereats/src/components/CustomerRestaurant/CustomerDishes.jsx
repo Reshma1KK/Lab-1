@@ -17,7 +17,6 @@ function CustomerDishes() {
   //   this.fetchData();
   // }
 
-
     const [dishes,getDishes]=useState([]);
 
     useEffect(() => {
