@@ -15,6 +15,7 @@ import CustomerPage from "./components/Customer/CustomerPage.jsx"
 import EditCustomerProfile from "./components/Customer/EditCustomerProfile.jsx"
 import CustomerRestaurant from "./components/CustomerRestaurant/CustomerRestaurant.jsx"
 import AddtoCart from "./components/AddtoCart/AddtoCart.jsx"
+import OrderFood from "./components/PlaceOrder/OrderFood.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
@@ -37,6 +38,7 @@ function App() {
       <Route path="/EditCustomerProfile" component={EditCustomerProfile} />
       <Route path="/CustomerRestaurant" component={CustomerRestaurant} />
       <Route path="/AddtoCart" component={AddtoCart} />
+      <Route path="/OrderFood" component={OrderFood} />
     </Switch>
   </Router>
    </div>
