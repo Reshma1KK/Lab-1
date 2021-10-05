@@ -1,5 +1,4 @@
-import React,{useState} from 'react'
-import Axios from "axios"
+import React from 'react'
 import AddtoCart from "../AddtoCart/AddtoCart.jsx"
 // import image from "./addtocart.jpeg"
 
@@ -7,11 +6,8 @@ import AddtoCart from "../AddtoCart/AddtoCart.jsx"
 
 export const Modal = ({showModal,setShowModal}) => {
 
+
   const OrderFood = () => {
-    Axios.get("http://localhost:3001/AddtoCart")
-    .then((response) => {
-      const CartValue=response.data.dashboard;
-    })
     window.open("/OrderFood","_self");
   }
 

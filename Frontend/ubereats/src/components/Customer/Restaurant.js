@@ -7,7 +7,7 @@ function Restaurant({restaurant}){
 
   // if((restaurant.location).includes(JSON.parse(localStorage.getItem("user"))[0]["city"])){
   const[res,setRes]=useState("");
-  const[id,setId]=useState("");
+
 
   function getRestaurantLanding(){
     Axios.get("http://localhost:3001/Restaurant")
@@ -22,19 +22,10 @@ function Restaurant({restaurant}){
 
   return(
       <div className="card restaurant-style" style={{width:"66%"}}>
-        <img src={`data:image/jpeg;base64,${restaurant.picture}`} class="card-img-top" alt="dish-img" />
+        <img src={`data:image/jpeg;base64,${restaurant.picture}`} className="card-img-top" alt="dish-img" style={{width:"300px",height:"150px"}} />
           <div className="card-body">
-            <h5 className="card-title">{`${restaurant.restaurantName}`}</h5>
-            <h5 className="card-text">{`${restaurant.location}`}</h5>
+            <a href="#" onClick={getRestaurantLanding} style={{color:"green"}}><h5 className="card-title">{`${restaurant.restaurantName}`}</h5></a>
           </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">{`${restaurant.description}`}</li>
-          <li className="list-group-item muted">{`${restaurant.contact}`}</li>
-          <li className="list-group-item">{`${restaurant.timings}`}</li>
-        </ul>
-        <div className="card-body">
-        <button type="button" className="btn btn-success" style={{color:"#fff"}} onClick={getRestaurantLanding}>Order Now</button>
-      </div>
       </div>
     )
   }

@@ -1,30 +1,22 @@
-import React,{useState,useEffect, Fragment } from 'react'
-import Axios from "axios";
+import React,{ Fragment } from 'react'
 import  "../AddtoCart/AddtoCart.css";
-import {Row,Col} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 
-
+// cart.current_order === 1 ? getCartItems(cart) : ""
 
 function AddtoCartItem({cart}) {
-
-
+// console.log("hello",cart.current_order.data[0]);
+if(cart.current_order.data[0] === 1) {
   return(
       <Fragment>
-      <Row>
-          <ul>
-            <li>
-            <Col>
-            {`${cart.dish_name}`}
-            </Col>
-            <Col>
-            {`${cart.price}`}
-            </Col>
-            <Col>
-            {`${cart.dish_category}`}
-            </Col>
-           </li>
-          </ul>
-      </Row>
+      <div className="row">
+      <Col>
+       {cart.dish_name}
+       </Col>
+      <Col>
+       {cart.price}
+      </Col>
+      </div>
       </Fragment>
     // <div className="card dishes" style={{width: "300px"}}>
     // <div className="card-body">
@@ -37,6 +29,9 @@ function AddtoCartItem({cart}) {
   )
 }
 
+return ("")
+
+}
 
 
 export default AddtoCartItem;

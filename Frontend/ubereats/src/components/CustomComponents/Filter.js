@@ -149,9 +149,9 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
         || (((restaurant.type_of_delivery.toLowerCase()).includes("Pick Up".toLowerCase())) && takeAwayIsChecked===true)) {
         return true;
        }}).map(function(restaurant){
-        return(<Col sm={48} md={24} lg={12} key={restaurant.id}>
+        return(<Col sm={12} md={6} lg={4} key={restaurant.id} >
           <h2>Filter results:</h2>
-          <Restaurant restaurant={restaurant} style={{width:"66%"}} />
+          <Restaurant restaurant={restaurant} />
           </Col>
        )
      })
@@ -170,7 +170,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
       && vegIsChecked===true)) {
       return true;
      }}).map(function(restaurant){
-      return(<Col sm={48} md={24} lg={12} key={restaurant.id}>
+      return(<Col sm={12} md={6} lg={4} key={restaurant.id}>
         <h2>Filter results:</h2>
         <Restaurant restaurant={restaurant} />
         </Col>

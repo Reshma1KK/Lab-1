@@ -9,10 +9,10 @@ function CustomerForm({dash}){
   //if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
   return(
      <div>
-      <div className="container">
-        <div className="card mb-12" style={{maxWidth: "5000px", objectFit:"contain"}}>
-          <img src={`data:image/jpeg;base64,${dash.picture}`} className="profile-img" alt="dash-img" />
-          <div className="row g-0">
+      <div className="container-fluid">
+        <div className="card mb-12" style={{width:"100rem", objectFit:"contain"}}>
+          <img src={`data:image/jpeg;base64,${dash.picture}`} className="profile-img" alt="dash-img" style={{width:"1000px",height:"550px"}}/>
+          <div className="row g-0" style={{width:"1000px",height:"150px"}}>
           <div className="col-md-12">
             <div className="card-body">
                 <h5 className="card-title">{`${dash.restaurantName}`}</h5>

@@ -38,7 +38,7 @@ function EditCustomerProfile() {
   return (
     <div className="card">
     <Navbar />
-    <div className="card-body">
+    <div className="card-body" style={{marginTop:"30px"}}>
     <input
      type="text"
      className = "form-control"

@@ -10,19 +10,27 @@ function Dish({dish}){
 
   return(
     <div>
-        <div className="card dishes" style={{width: "18rem"}}>
-        <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="card-img-top" alt="dish-img" />
-        <div className="card-body">
-          <h5 className="card-title">{`${dish.dish_name}`}</h5>
-          <h5 className="card-text">{`${dish.dish_ingredients}`}</h5>
-          <h5 className="card-text">{`${dish.dish_price}`}</h5>
-          <h5 className="card-text">{`${dish.dish_description}`}</h5>
-          <h5 className="card-text">{`${dish.dish_category}`}</h5>
-          <Link to="/EditDishes">
-          <button type="button" className="btn btn-success" style={{margin:"10px"}}>Edit</button>
-          </Link>
-          </div>
-          </div>
+      <div>
+      <div className="card mb-3" style="max-width: 540px" style={{width: "30rem"}}>
+      <div className="row g-0">
+      <div className="col-md-4">
+      <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="img-fluid rounded-start" alt="dish-img" />
+      </div>
+      <div className="col-md-8">
+      <div className="card-body">
+        <h3 className="card-title">{`${dish.dish_name}`}</h3>
+        <h6 className="card-text">{`${dish.dish_ingredients}`}</h6>
+        <h6 className="card-text">{`${dish.dish_description}`}</h6>
+        <h6 className="card-text">{`${dish.dish_category}`}</h6>
+        <h6 className="card-text"><small className="text-muted">{`${dish.dish_price}`}</small></h6>
+        <Link to="/EditDishes">
+        <button type="button" classNameName="btn btn-success" style={{margin:"10px",borderRadius:"10%"}}>Edit</button>
+        </Link>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
     </div>
   )
 }

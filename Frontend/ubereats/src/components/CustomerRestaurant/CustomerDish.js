@@ -1,8 +1,7 @@
-import React,{useState,useEffect, useCallback } from 'react'
+import React,{useState } from 'react'
 // import {Link} from "react-router-dom";
 // import { useSpring, animated } from 'react-spring';
 import Axios from "axios";
-import {Modal} from "../CustomComponents/Modal.jsx"
 import  "../AddtoCart/AddtoCart.css";
 // import "../CustomComponents/Modal.css"
 
@@ -23,16 +22,20 @@ function CustomerDish({dish}) {
  const restaurantName=dish.res_name;
  const price=dish.dish_price;
  const dishCategory=dish.dish_category;
+ const currentOrder=1;
+
   const addToCart = (dish) => {
     console.log(dish);
     setCart([...cart,dish]);
+
     Axios.post("http://localhost:3001/AddtoCart",{
       customerName:customerName,
       customerEmail:customerEmail,
       dishName:dishName,
       restaurantName:restaurantName,
       price:price,
-      dishCategory:dishCategory
+      dishCategory:dishCategory,
+      currentOrder:currentOrder
     })
       alert("Items added to shopping Cart")
  };
@@ -49,9 +52,9 @@ function CustomerDish({dish}) {
   // const renderCart = () => (
   //   <>
   //   <h1>Cart</h1>
-  //   <div className="Dishes"></div>
+  //   <div classNameName="Dishes"></div>
   //   {cart.map((Dishes,idx) => {
-  //     <div className="Dish" key={idx}>
+  //     <div classNameName="Dish" key={idx}>
   //     <h3>{dish.name}</h3>
   //     <h4>{dish.cost}</h4>
   //     <img src={`data:image/jpeg;base64,${dish.dish_img}`} alt="cart-img" />
@@ -63,25 +66,26 @@ function CustomerDish({dish}) {
 
   return(
 
-    <div className="card dishes" style={{width: "300px"}}>
-      <>
-    <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="card-img-top" alt="dish-img" />
-    <div className="card-body">
-      <h5 className="card-title">{`${dish.dish_name}`}</h5>
-      <h5 className="card-text">{`${dish.dish_ingredients}`}</h5>
-      <h5 className="card-text">{`${dish.dish_price}`}</h5>
-      <h5 className="card-text">{`${dish.dish_description}`}</h5>
-      <h5 className="card-text">{`${dish.dish_category}`}</h5>
-      <div className="text-center">
-      <button type="button" className="btn btn-success" style={{borderRadius:"50px"}} onClick={()=>{addToCart(dish)}}>Add to Cart</button>
+    <div>
+      <div className="card mb-3" style={{width: "25rem",maxWidth: "540px"}}>
+      <div className="row g-0">
+      <div className="col-md-4">
+      <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="img-fluid rounded-start" alt="dish-img" />
       </div>
-      </div>
-      </>
-
-      </div>
+      <div className="col-md-8">
+      <div className="card-body">
+        <h3 className="card-title">{`${dish.dish_name}`}</h3>
+        <h6 className="card-text">{`${dish.dish_ingredients}`}</h6>
+        <h6 className="card-text">{`${dish.dish_description}`}</h6>
+        <h6 className="card-text">{`${dish.dish_category}`}</h6>
+        <h6 className="card-text"><small className="text-muted">{`${dish.dish_price}`}</small></h6>
+        <button type="button" className="btn btn-success" style={{borderRadius:"50px"}} onClick={()=>{addToCart(dish)}}>Add to Cart</button>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
   );
 }
-
-
 
 export default CustomerDish;

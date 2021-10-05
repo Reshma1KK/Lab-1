@@ -304,8 +304,35 @@ app.post("/AddtoCart", (req,res) => {
   const restaurantName=req.body.restaurantName ;
   const price=req.body.price ;
   const dishCategory=req.body.dishCategory ;
-  const sqlInsert ="INSERT INTO cart_items (customer_name,customer_email,dish_name, restaurant_name, price, dish_category) VALUES (?,?,?,?,?,?)";
-  connection.query(sqlInsert,[customerName,customerEmail,dishName,restaurantName,price,dishCategory],(err,result) => {
+  const currentOrder=req.body.currentOrder;
+  const sqlInsert ="INSERT INTO cart_items (customer_name,customer_email,dish_name, restaurant_name, price, dish_category,current_order) VALUES (?,?,?,?,?,?,?)";
+  connection.query(sqlInsert,[customerName,customerEmail,dishName,restaurantName,price,dishCategory,currentOrder],(err,result) => {
+    if(err){
+      return console.log(err);
+    }
+    else{
+      return console.log("Inserted successfully!");
+    }
+  })
+})
+app.put("/AddtoCart", (req,res) => {
+  const location = req.body.location;
+  const name=req.body.name;
+  const sqlInsert ="UPDATE cart_items SET location=? WHERE customer_name=?";
+  connection.query(sqlInsert,[location,name],(err,result) => {
+    if(err){
+      return console.log(err);
+    }
+    else{
+      return console.log("Inserted successfully!");
+    }
+  })
+})
+app.put("/AddtoCart/OrderPlaced", (req,res) => {
+  const currentOrder = req.body.currentOrder;
+  const name=req.body.name;
+  const sqlInsert ="UPDATE cart_items SET current_order=? WHERE customer_name=?";
+  connection.query(sqlInsert,[currentOrder,name],(err,result) => {
     if(err){
       return console.log(err);
     }

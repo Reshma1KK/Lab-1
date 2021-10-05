@@ -1,9 +1,6 @@
 import React,{useState,useEffect,Fragment} from 'react'
 import Axios from "axios"
-import image from "../CustomComponents/addtocart.jpeg"
-import {Row,Col} from "react-bootstrap";
-import Navbar from "../Customer/Navbar.jsx"
-import CustomerDish from "../CustomerRestaurant/CustomerDish.js";
+import {Row} from "react-bootstrap";
 import AddtoCartItem from "./AddtoCartItem.js";
 
 // import "./Modal.css"
@@ -28,7 +25,7 @@ function AddtoCart (){
 
 
 return(
-        <Fragment style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"10px",padding:"10%"}}>
+        <Fragment style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"10px"}}>
           <Row>
           </Row>
            <Row>
@@ -38,9 +35,9 @@ return(
              {cartItems.filter(function(cart) {
                return true;
              }).map(function(cart){
-               return(<Col sm={12} md={6} lg={4} key={cart.id}>
+               return(<div className="container-fluid" style={{fontSize:"1rem"}} key={cart.id}>
                  <AddtoCartItem cart={cart} />
-               </Col>
+                 </div>
              )
              })}
           </Row>

@@ -12,7 +12,7 @@ function NavBar() {
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerLandingPage">Looking for food?</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerPage">Profile</a>
+        <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerPage">{JSON.parse(localStorage["user"])[0].name}<span style={{color:"green"}}> ,View Account</span></a>
         </li>
         <li className="nav-item">
         <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>LogOut</a>

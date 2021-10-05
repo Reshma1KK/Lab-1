@@ -4,7 +4,10 @@ import CustomerDish from "../CustomerRestaurant/CustomerDish.js"
 import image from "../AddtoCart/grocery-cart.png"
 import {Modal} from "../CustomComponents/Modal.jsx"
 
+
 function NavBar() {
+
+
 
   const [showModal,setShowModal]=useState(false);
 
@@ -21,9 +24,9 @@ function NavBar() {
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerLandingPage">Looking for food?</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerPage">Profile</a>
+        <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerPage">{JSON.parse(localStorage["user"])[0].name}<span style={{color:"green"}}> ,View Account</span></a>
         </li>
-        <button type="button" className="btn btn-dark" style={{backgroundColor:"black"}} onClick={showPopUp}><span><img src={image} alt="" style={{width:"20px", color:"#fff"}}/></span>Cart</button>
+        <button type="button" className="btn btn-dark" style={{backgroundColor:"black"}} onClick={showPopUp}><span><img src={image} alt="" style={{width:"20px", color:"#fff"}}/>Cart</span></button>
         <Modal showModal={showModal} setShowModal={setShowModal} />
         <li className="nav-item">
         <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>LogOut</a>
