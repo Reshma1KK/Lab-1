@@ -33,11 +33,4 @@ function CustomerForm({dash}){
 
 
 
-
-
-
-
-
-
-
 export default CustomerForm;

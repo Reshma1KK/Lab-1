@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "./Navbar.jsx";
 import Profile from "./Profile.jsx";
+import NavbarAddToCart from "../CustomerRestaurant/NavbarAddToCart.jsx"
 
 
 function CustomerPage(){
   return(
     <div>
-    <Navbar />
+    <NavbarAddToCart />
     <div>
     <Profile />
     </div>

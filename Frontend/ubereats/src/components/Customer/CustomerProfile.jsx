@@ -51,7 +51,9 @@ function CustomerProfile({customerInfo}){
       </div>
       <div className="col-lg-7 col-md-6 pl-xl-3">
         <h5 className="font-weight-bold">Find My Favorites: </h5>
+        <Link to="/Favorites">
         <p><a href="http://localhost:3000/Favorites" style={{color:"#345B63"}}>Favorites</a></p>
+        </Link>
         <h5 className="font-weight-bold">About: </h5>
         <p>{`${customerInfo.about}`}</p>
         <Link to="./EditCustomerProfile">

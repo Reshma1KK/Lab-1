@@ -4,9 +4,12 @@ import {Col} from "react-bootstrap";
 
 // cart.current_order === 1 ? getCartItems(cart) : ""
 
+
 function AddtoCartItem({cart}) {
 // console.log("hello",cart.current_order.data[0]);
-if(cart.current_order.data[0] === 1) {
+// && localStorage.getItem("cartValue") === cart.restaurant_name
+// console.log("resname",cart.restaurant_name)
+if((cart.current_order.data[0] === 1)){
   return(
       <Fragment>
       <div className="row">

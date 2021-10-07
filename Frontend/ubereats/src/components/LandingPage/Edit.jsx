@@ -1,16 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState,Fragment} from 'react';
 import NavBar from "./NavBar.jsx";
 import Axios from "axios";
+import {Row,Col} from "react-bootstrap"
 
 
 function Edit(){
 
-  const [resName,setResName] = useState("");
-  // const [resLocation,setResLocation] = useState("");
-  // const [resImg,setResImg] = useState("");
-  // const [resDescription,setResDescription] = useState("");
-  // const [resContact,setResContact] = useState("");
-  // const [resTimings,setResTimings] = useState("");
 
   const[newName,setNewName]= useState("");
   const [newLocation,setNewLocation] = useState("");
@@ -19,110 +14,68 @@ function Edit(){
   const [newContact,setNewContact] = useState("");
   const [newTimings,setNewTimings] = useState("");
 
-  function editName(resName) {
-      Axios.put("http://localhost:3001/Edit.jsx",
-        {
-          resName:resName,
-          newName:newName,
-          // newLocation:newLocation,
-          // newImg:newImg,
-          // newDescription:newDescription,
-          // newContact:newContact,
-          // newTimings:newTimings
-        })
-      }
-      function editLocation(resName) {
-          Axios.put("http://localhost:3001/Edit.jsx",
-            {
-              resName:resName,
-              newLocation:newLocation,
-              // newLocation:newLocation,
-              // newImg:newImg,
-              // newDescription:newDescription,
-              // newContact:newContact,
-              // newTimings:newTimings
-            })
-          }
-      function editImg(resName) {
-            Axios.put("http://localhost:3001/Edit.jsx",
-              {
-                resName:resName,
-                newImg:newImg,
-                              // newLocation:newLocation,
-                              // newImg:newImg,
-                              // newDescription:newDescription,
-                              // newContact:newContact,
-                              // newTimings:newTimings
-              })
-      }
-      function editDescription(resName) {
-          Axios.put("http://localhost:3001/Edit.jsx",
-            {
-              resName:resName,
-              newDescription:newDescription,
-                // newLocation:newLocation,
-                  // newImg:newImg,
-                  // newDescription:newDescription,
-                  // newContact:newContact,
-                  // newTimings:newTimings
-              })
-            }
-        function editContact(resName) {
-          Axios.put("http://localhost:3001/Edit.jsx",
-            {
-              resName:resName,
-              newContact:newContact,
-                                    // newLocation:newLocation,
-                                    // newImg:newImg,
-                                    // newDescription:newDescription,
-                                    // newContact:newContact,
-                                    // newTimings:newTimings
-            })
-        }
-      function editTimings(resName) {
-          Axios.put("http://localhost:3001/Edit.jsx",
-            {
-              resName:resName,
-              newTimings:newTimings,
-                      // newLocation:newLocation,
-                      // newImg:newImg,
-                      // newDescription:newDescription,
-                      // newContact:newContact,
-                      // newTimings:newTimings
-            })
-      }
 
-
-
-  function showInput() {
-      document.getElementById('name').innerHTML = document.getElementById("res_name").value;
-      document.getElementById('location').innerHTML = document.getElementById("res_location").value;
-      document.getElementById('description').innerHTML = document.getElementById("res_description").value;
-      document.getElementById('contact').innerHTML = document.getElementById("res_contact").value;
-      document.getElementById('timings').innerHTML = document.getElementById("res_timings").value;
+  function editRestaurantName() {
+      Axios.put("http://localhost:3001/EditName",
+      {
+        resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+        newName:newName
+      })
+      JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]=newName;
+      alert("Updated successfully")
     }
+  function editRestaurantLocation() {
+      Axios.put("http://localhost:3001/EditLocation",
+      {
+        resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+        newLocation:newLocation,
+      })
+      alert("Updated successfully")
+    }
+  function editRestaurantImg() {
+        Axios.put("http://localhost:3001/EditImg",
+        {
+          resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+          newImg:newImg
+        })
+        alert("Updated successfully")
+      }
+  function editRestaurantDescription() {
+        Axios.put("http://localhost:3001/EditDescription",
+        {
+        resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+        newDescription:newDescription
+        })
+        alert("Updated successfully")
+      }
+  function editRestaurantContact() {
+        Axios.put("http://localhost:3001/EditContact",
+        {
+        resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+        newContact:newContact
+        })
+        alert("Updated successfully")
+      }
+  function editRestaurantTimings() {
+        Axios.put("http://localhost:3001/EditTimings",
+        {
+       resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+       newTimings:newTimings
+      })
+      alert("Updated successfully")
+      }
 
   return(
-    <div className="card">
+    <Fragment>
     <NavBar />
-    <div className="card-body">
+    <h2>{JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]}</h2>
+    <Row style={{margin:"100px"}}>
+    <Col>
     <input
-     type="text"
-     name="resName"
-     placeholder="Restaurant Name"
-     onChange = {
-       (e) => {
-         setResName(e.target.value);
-       }
-     }
-    />
-    </div>
-    <div className="card-body">
-    <input
-     id="res_name"
      type="text"
      name="newName"
-     placeholder="Restaurant Name"
+     placeholder="Restaurant"
+     className="form-control"
      defaultValue={JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]}
      onChange = {
        (e) => {
@@ -130,89 +83,108 @@ function Edit(){
        }
      }
     />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editName(resName)}}>Save Changes</button>
-    </div>
-    <div className="card-body">
-    <input
-    id="res_location"
-     type="text"
-    className = "form-control"
-     name="resLocation"
-     placeholder="Restaurant Location"
-     defaultValue={JSON.parse(localStorage.getItem("user"))[0]["location"]}
-     onChange = {
-       (e) => {
-         setNewLocation(e.target.value);
+    </Col>
+    <Col>
+      <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantName}>✔️</button>
+      </Col>
+      </Row>
+
+      <Row style={{margin:"100px"}}>
+      <Col>
+      <input
+       type="text"
+       name="newLocation"
+       placeholder="Location"
+       className="form-control"
+       onChange = {
+         (e) => {
+           setNewLocation(e.target.value);
+         }
        }
-     }
-    />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editLocation(resName)}}>Save Changes</button>
-    </div>
-    <div className="card-body file">
-    <input
-    id="res_img"
-    type="file"
-   className = "form-control"
-    name="resImg"
-    onChange= { e => {
-      setNewImg(e.target.value);
-    }}
-    />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editImg(resName)}}>Save Changes</button>
-    </div>
-    <div className="card-body">
-    <input
-    id="res_description"
-    type="text"
-    className = "form-control"
-    name="resDescription"
-    placeholder="Restaurant Description"
-    onChange= { e => {
-      setNewDescription(e.target.value);
-    }}
-    />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editDescription(resName)}}>Save Changes</button>
-    </div>
-    <div className="card-body">
-    <input
-    id="res_contact"
-    type="text"
-      className = "form-control"
-    name="resContact"
-    placeholder="Restaurant Contact"
-    onChange= { e => {
-      setNewContact(e.target.value);
-    }}
-    />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editContact(resName)}}>Save Changes</button>
-    </div>
-    <div className="card-body">
-    <input
-    id="res_timings"
-    type="text"
-      className = "form-control"
-    name="resTimings"
-    placeholder="Restaurant Timings"
-    onChange= { e => {
-      setNewTimings(e.target.value);
-    }}
-    />
-    <button type="button" class="btn btn-outline-light" onClick={()=>{editTimings(resName)}}>Save Changes</button>
-    </div>
-    <button type="button" class="btn btn-outline-light" onClick={showInput}>Show Details</button>
-    <center>
-    <div className="container-fluid">
-    <p><span id="name"></span></p>
-    <p><span id="location"></span></p>
-    <p><span id="image"></span></p>
-    <p><span id="description"></span></p>
-    <p><span id="contact"></span></p>
-    <p><span id="timings"></span></p>
-  </div>
-  </center>
-  </div>
+      />
+      </Col>
+      <Col>
+        <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantLocation}>✔️</button>
+        </Col>
+        </Row>
 
+        <Row style={{margin:"100px"}}>
+        <Col>
+        <input
+         type="file"
+         name="newImg"
+         placeholder="Image"
+         className="form-control"
+         onChange = {
+           (e) => {
+             setNewImg(e.target.value);
+           }
+         }
+        />
+        </Col>
+        <Col>
+          <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantImg}>✔️</button>
+          </Col>
+          </Row>
 
+          <Row style={{margin:"100px"}}>
+          <Col>
+          <input
+           type="text"
+           name="newDescription"
+           placeholder="Description"
+           className="form-control"
+           onChange = {
+             (e) => {
+               setNewDescription(e.target.value);
+             }
+           }
+          />
+          </Col>
+          <Col>
+            <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantDescription}>✔️</button>
+            </Col>
+            </Row>
+
+            <Row style={{margin:"100px"}}>
+            <Col>
+            <input
+             type="text"
+             name="newContact"
+             placeholder="Contact"
+             className="form-control"
+             onChange = {
+               (e) => {
+                 setNewContact(e.target.value);
+               }
+             }
+            />
+            </Col>
+            <Col>
+              <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantContact}>✔️</button>
+              </Col>
+              </Row>
+
+              <Row style={{margin:"100px"}}>
+              <Col>
+              <input
+               type="text"
+               name="newTimings"
+               placeholder="Timings"
+               className="form-control"
+               onChange = {
+                 (e) => {
+                   setNewTimings(e.target.value);
+                 }
+               }
+              />
+              </Col>
+              <Col>
+                <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editRestaurantTimings}>✔️</button>
+                </Col>
+                </Row>
+
+    </Fragment>
   );
 
 }

@@ -33,6 +33,7 @@ function CustomerLogin() {
           localStorage.setItem("user", JSON.stringify(response.data));
           localStorage.setItem("isAuthenticated","true");
           setCustomerSatus("Logged In successfully!!");
+          localStorage.setItem("cartVal","");
           window.open("./CustomerLandingPage","_self");
           console.log(JSON.stringify(response.data));
         }

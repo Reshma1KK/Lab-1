@@ -11,13 +11,16 @@ function NavBar() {
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/Edit">Edit Profile</a>
         </li>
         <li className="nav-item">
+        <a className="nav-link" href="http://localhost:3000/OrdersPage">Orders</a>
+        </li>
+        <li className="nav-item">
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/AddDishes">Add Dishes</a>
         </li>
         <li className="nav-item">
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/RestaurantLanding">Profile</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>LogOut</a>
+        <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>Logout</a>
         </li>
       </ul>
     </div>

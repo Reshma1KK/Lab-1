@@ -16,6 +16,10 @@ import EditCustomerProfile from "./components/Customer/EditCustomerProfile.jsx"
 import CustomerRestaurant from "./components/CustomerRestaurant/CustomerRestaurant.jsx"
 import AddtoCart from "./components/AddtoCart/AddtoCart.jsx"
 import OrderFood from "./components/PlaceOrder/OrderFood.jsx"
+import Favorites from "./components/Favorites/Favorites.jsx"
+import PastOrders from "./components/PastOrders/PastOrders.jsx"
+import OrdersPage from "./components/RestaurantOrderPage/OrdersPage.jsx"
+import DisplayProfile from "./components/RestaurantOrderPage/DisplayProfile.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
@@ -39,6 +43,10 @@ function App() {
       <Route path="/CustomerRestaurant" component={CustomerRestaurant} />
       <Route path="/AddtoCart" component={AddtoCart} />
       <Route path="/OrderFood" component={OrderFood} />
+      <Route path="/Favorites" component={Favorites} />
+      <Route path="/PastOrders" component={PastOrders} />
+      <Route path="/OrdersPage" component={OrdersPage} />
+      <Route path="/DisplayProfile" component={DisplayProfile} />
     </Switch>
   </Router>
    </div>

@@ -5,13 +5,15 @@ import {Link} from "react-router-dom";
 
 function Dish({dish}){
 
+  const EditDishes = ()=>{
+    localStorage.setItem("val",dish.dish_name);
+  }
 
- if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dish.res_name)){
+ // ((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dish.res_name))
 
   return(
     <div>
-      <div>
-      <div className="card mb-3" style="max-width: 540px" style={{width: "30rem"}}>
+      <div className="card mb-3" style={{width: "25rem",maxWidth: "540px"}}>
       <div className="row g-0">
       <div className="col-md-4">
       <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="img-fluid rounded-start" alt="dish-img" />
@@ -24,20 +26,16 @@ function Dish({dish}){
         <h6 className="card-text">{`${dish.dish_category}`}</h6>
         <h6 className="card-text"><small className="text-muted">{`${dish.dish_price}`}</small></h6>
         <Link to="/EditDishes">
-        <button type="button" classNameName="btn btn-success" style={{margin:"10px",borderRadius:"10%"}}>Edit</button>
+        <button type="button" className="btn btn-success" style={{margin:"10px",borderRadius:"10%"}} onClick={()=>EditDishes(dish.dish_name)}>Edit</button>
         </Link>
-        </div>
         </div>
         </div>
         </div>
         </div>
     </div>
   )
-}
 
-  return("")
-
-
+  // return("")
 
 }
 

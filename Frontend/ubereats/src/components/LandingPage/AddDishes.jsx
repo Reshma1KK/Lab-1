@@ -30,7 +30,7 @@ function AddDishes() {
 
 
   return(
-    <div className="card">
+    <div className="card" style={{marginTop:"30px"}}>
     <NavBar />
     <div className="card-body">
     <h2>{JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]}</h2>

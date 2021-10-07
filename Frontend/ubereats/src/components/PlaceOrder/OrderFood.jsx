@@ -5,6 +5,7 @@ import NavbarAddToCart from "../CustomerRestaurant/NavbarAddToCart.jsx"
 import AddtoCartCustomer from "./AddtoCartCustomer.jsx"
 import {Row,Col} from "react-bootstrap";
 import {ModalAddress} from "../CustomComponents/ModalAddress.js"
+import DeliveryTakeAway from "./DeliveryTakeAway.jsx"
 
 
 function OrderFoor({total}){
@@ -16,15 +17,30 @@ function OrderFoor({total}){
     }
     const currentOrder=0;
     const name = JSON.parse(localStorage["user"])[0].name;
+    const restaurantName=JSON.parse(localStorage.getItem("res"))["restaurantName"];
+
+    var currentdate = new Date();
+    var date = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+
     const OrderPlaced = () => {
       Axios.put("http://localhost:3001/AddtoCart/OrderPlaced",{
         currentOrder:currentOrder,
-        name:name
+        name:name,
+        date:date,
+        restaurantName:restaurantName,
+        orderStatus:"New Order"
       }).then(response =>{
         console.log("Added to DB!");
       }).catch(err =>{
         console.log(err);
       })
+      localStorage.removeItem("total");
+      localStorage.setItem("cartVal","");
       alert("Order Placed Successfully!")
     }
 
@@ -64,6 +80,7 @@ function OrderFoor({total}){
     <button type="button" className="btn btn-dark" onClick={showAddress}>📍</button>
     <ModalAddress showModal={showModal} setShowModal={setShowModal} />
     {console.log(localStorage.getItem("total"))}
+    <DeliveryTakeAway />
     <div className="d-flex flex-row justify-content-center mt-3 p-2 rounded container">TOTAL:{localStorage.getItem("total")}$</div>
     <div className="justify-content-center rounded"><button className="btn btn-success btn-block btn-lg pay-button" type="button" style={{width:"90%", paddingTop:"10px",paddingBottom:"10px"}} onClick={OrderPlaced}>Place Order</button></div>
     </Col>

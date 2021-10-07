@@ -9,7 +9,6 @@ function CustomerRestaurant (){
 
 const [cartItems,setCartItems]= useState([]);
 
-
     // JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]
     // JSON.parse(localStorage.getItem("user"))[3]["location"]
 

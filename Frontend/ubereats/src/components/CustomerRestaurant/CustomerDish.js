@@ -5,11 +5,15 @@ import Axios from "axios";
 import  "../AddtoCart/AddtoCart.css";
 // import "../CustomComponents/Modal.css"
 
-
-
-
-
+// JSON.stringify(localStorage.setItem("cartValue",(JSON.parse(localStorage.getItem("res"))["restaurantName"])));
 function CustomerDish({dish}) {
+
+  // if(currentOrder==0 ){
+  //   JSON.stringify(localStorage.setItem("cartValue",dish.res_name))
+  // }
+  // else{
+  //   JSON.stringify(localStorage.setItem("cartValue","R&B Tea"))
+  // }
 
 
   const[myDish,setMyDish]=useState([]);
@@ -24,21 +28,72 @@ function CustomerDish({dish}) {
  const dishCategory=dish.dish_category;
  const currentOrder=1;
 
-  const addToCart = (dish) => {
-    console.log(dish);
-    setCart([...cart,dish]);
 
-    Axios.post("http://localhost:3001/AddtoCart",{
-      customerName:customerName,
-      customerEmail:customerEmail,
-      dishName:dishName,
-      restaurantName:restaurantName,
-      price:price,
-      dishCategory:dishCategory,
-      currentOrder:currentOrder
-    })
-      alert("Items added to shopping Cart")
- };
+
+  const addToCart = (dish) => {
+    console.log(dish)
+    if(localStorage.getItem("cartVal")===""){
+        localStorage.setItem("cartVal",dish.res_name)
+        setCart([...cart,dish]);
+        // JSON.stringify(localStorage.setItem("cartValue",dish.res_name));
+        Axios.post("http://localhost:3001/AddtoCart",{
+          customerName:customerName,
+          customerEmail:customerEmail,
+          dishName:dishName,
+          restaurantName:restaurantName,
+          price:price,
+          dishCategory:dishCategory,
+          currentOrder:currentOrder
+        })
+          alert("Items added to shopping Cart")
+      }
+    else{
+      if(localStorage.getItem("cartVal")!=dish.res_name){
+        alert(`Your order contains items from ${(localStorage.getItem("cartVal"))}, Do you want to create a new order from ${dish.res_name}`);
+        Axios.delete("http://localhost:3001/AddtoCart")
+        localStorage.setItem("cartVal",dish.res_name)
+        console.log("Deleted!");
+      }
+      else{
+          setCart([...cart,dish]);
+          // JSON.stringify(localStorage.setItem("cartValue",dish.res_name));
+          Axios.post("http://localhost:3001/AddtoCart",{
+            customerName:customerName,
+            customerEmail:customerEmail,
+            dishName:dishName,
+            restaurantName:restaurantName,
+            price:price,
+            dishCategory:dishCategory,
+            currentOrder:currentOrder
+          })
+            alert("Items added to shopping Cart")
+        }
+      }
+    }
+      //   setCart([...cart,dish]);
+      //   // JSON.stringify(localStorage.setItem("cartValue",dish.res_name));
+      //   Axios.post("http://localhost:3001/AddtoCart",{
+      //     customerName:customerName,
+      //     customerEmail:customerEmail,
+      //     dishName:dishName,
+      //     restaurantName:restaurantName,
+      //     price:price,
+      //     dishCategory:dishCategory,
+      //     currentOrder:currentOrder
+      //   })
+      //     alert("Items added to shopping Cart")
+      // }
+    //         else{
+    //           alert(`Your oder contains items from ${localStorage.getItem("cartValue")}, Do you want to create a new order from ${dish.res_name}`);
+    //         }
+    // }
+
+
+    // else{
+    //   alert(`Your oder contains items from ${(dish.res_name)[dish.id-1]}, Do you want to create a new order from ${dish.res_name}`);
+    // }
+  // };
+
 
     // Axios.post("http://localhost:3001/AddtoCart",{
     //   customerName:JSON.parse(localStorage.getItem(user[0].name)),

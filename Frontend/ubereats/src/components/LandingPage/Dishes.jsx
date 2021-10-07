@@ -39,15 +39,23 @@ function Dishes() {
       return(
 
         <Fragment>
-          <Row>
-            {dishes.map((dish) => (
-              <Col sm={12} md={6} lg={4} key={dish.id}>
-                <Dish dish={dish} />
-              </Col>
-            ))}
-
-          </Row>
-        </Fragment>
+         <Row>
+         <hr />
+         <h3 style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"50px"}}>Menu</h3>
+         <hr />
+         {dishes.filter(function(dish) {
+           if (!((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dish.res_name))){
+             return false;
+           }
+           return true;
+         }).map(function(dish){
+           return(<Col sm={12} md={6} lg={4} key={dish.id}>
+             <Dish dish={dish} />
+           </Col>
+         )
+         })}
+        </Row>
+      </Fragment>
 
      )
     }
