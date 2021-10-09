@@ -3,7 +3,7 @@ import React from 'react'
 function NavigationBar (props) {
   return(
     <div>
-    <nav className = "navbar navbar-expand-lg navbar-light bg-light" >
+    <nav className = "navbar navbar-expand-lg navbar-light bg-black" >
     <div className = "container-fluid" >
     <a className = "navbar-brand"
     href = {props.link} > < p className = "login" > {props.name} ? SignIn < /p>< /a > <
@@ -22,14 +22,14 @@ function NavigationBar (props) {
     <li className = "nav-item" >
     <a className = "nav-link active"
     aria-current = "page"
-    href = "http://localhost:3000/" > Home </a> </li >
+    href = "http://localhost:3000/" style={{color:"white"}}> Home </a> </li >
     <li className = "nav-item" >
     <a className = "nav-link"
-    href = "http://localhost:3000/CustomerSignup" > Customer SignUp < /a>
+    href = "http://localhost:3000/CustomerSignup" style={{color:"white"}}> Customer SignUp < /a>
     </li>
     <li className = "nav-item">
     <a className = "nav-link"
-    href = "http://localhost:3000/RestaurantSignup" > Restaurant SignUp < /a>
+    href = "http://localhost:3000/RestaurantSignup" style={{color:"white"}}> Restaurant SignUp < /a>
     </li>
     <li className = "nav-item dropdown" >
     </li>

@@ -11,7 +11,7 @@ function AddtoCartItem({cart}) {
 // console.log("resname",cart.restaurant_name)
 if((cart.current_order.data[0] === 1)){
   return(
-      <Fragment>
+      <Fragment style={{border:"white"}}>
       <div className="row">
       <Col>
        {cart.dish_name}

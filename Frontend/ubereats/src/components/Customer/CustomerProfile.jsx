@@ -9,7 +9,7 @@ function CustomerProfile({customerInfo}){
      <div className="row" style={{marginTop:"50px"}}>
       <div className="col-lg-5 col-md-6">
         <div className="mb-2 customer-img">
-         <img className="w-50" src={`data:image/jpeg;base64,${customerInfo.profile_picture}`} alt="customer-profile" />
+         <img className="w-50" src={customerInfo.profile_picture} alt="customer-profile" />
         </div>
         <div className="customer-body">
         <div className="mb-2 d-flex">

@@ -122,19 +122,19 @@ function CustomerDish({dish}) {
   return(
 
     <div>
-      <div className="card mb-3" style={{width: "25rem",maxWidth: "540px"}}>
+      <div className="card mb-3" style={{width:"100%",height:"50%", fontFamily:"Postmates"}}>
       <div className="row g-0">
       <div className="col-md-4">
-      <img src={`data:image/jpeg;base64,${dish.dish_img}`} className="img-fluid rounded-start" alt="dish-img" />
+      <img src={dish.dish_img} className="img-fluid rounded-start" alt="dish-img" />
       </div>
       <div className="col-md-8">
       <div className="card-body">
-        <h3 className="card-title">{`${dish.dish_name}`}</h3>
+        <h5 className="card-title">{`${dish.dish_name}`}</h5>
         <h6 className="card-text">{`${dish.dish_ingredients}`}</h6>
         <h6 className="card-text">{`${dish.dish_description}`}</h6>
         <h6 className="card-text">{`${dish.dish_category}`}</h6>
         <h6 className="card-text"><small className="text-muted">{`${dish.dish_price}`}</small></h6>
-        <button type="button" className="btn btn-success" style={{borderRadius:"50px"}} onClick={()=>{addToCart(dish)}}>Add to Cart</button>
+        <button type="button" className="btn btn-success btn-md" style={{borderRadius:"50px"}} onClick={()=>{addToCart(dish)}}>Add to Cart</button>
         </div>
         </div>
         </div>

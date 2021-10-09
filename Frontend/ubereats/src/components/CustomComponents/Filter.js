@@ -1,8 +1,8 @@
 
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,Fragment} from 'react';
 import Axios from "axios";
 import {Col} from "react-bootstrap";
-import Restaurant from "../Customer/Restaurant.js"
+import Restaurant from "./RestaurantComponents.js"
 import "./Filter.css";
 
 
@@ -35,18 +35,19 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
 
 
     return (
-        <div className="container-fluid" style={{marginTop:"0px", fontSize:"20px"}}>
+        <div style={{marginTop:"10%", fontSize:"1rem"}}>
         <div>
-        <div className="container">
+        <div className="container" style={{marginTop:"0px", fontSize:"1rem"}}>
         <div className="row">
 
           <div className="col-md-8">
             <h2 className="grid-title"><i className="fa fa-filter"></i> Filters</h2>
             <hr />
 
-            <h4>Type of delivery:</h4>
+            <h4 style={{marginTop:"0px", fontSize:"1rem",fontFamily:"Postmates", fontWeight:"bold"}}>Type of delivery:</h4>
             <div class="checkbox">
-              <label><input
+              <label>
+              <input
               type="checkbox"
               className="icheck"
               name="deliveryType"
@@ -63,7 +64,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
               </label>
             </div>
             <div className="checkbox1">
-              <label><input
+              <label ><input
               type="checkbox"
                className="icheck"
                name="deliveryType"
@@ -84,7 +85,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
             </div>
 
 
-              <h4>Type of Food:</h4>
+              <h4 style={{marginTop:"0px", fontSize:"1rem", fontFamily:"Postmates", fontWeight:"bold"}}>Type of Food:</h4>
             <div className="checkbox2">
               <label>
               <input
@@ -149,10 +150,9 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
         || (((restaurant.type_of_delivery.toLowerCase()).includes("Pick Up".toLowerCase())) && takeAwayIsChecked===true)) {
         return true;
        }}).map(function(restaurant){
-        return(<Col sm={12} md={6} lg={4} key={restaurant.id} >
-          <h2>Filter results:</h2>
+        return(<Fragment key={restaurant.id} >
           <Restaurant restaurant={restaurant} />
-          </Col>
+          </Fragment>
        )
      })
    }
@@ -170,10 +170,9 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
       && vegIsChecked===true)) {
       return true;
      }}).map(function(restaurant){
-      return(<Col sm={12} md={6} lg={4} key={restaurant.id}>
-        <h2>Filter results:</h2>
+      return(<Fragment key={restaurant.id} style={{width:"100%"}}>
         <Restaurant restaurant={restaurant} />
-        </Col>
+        </Fragment>
      )
     })
     }

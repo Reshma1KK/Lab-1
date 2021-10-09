@@ -1,15 +1,16 @@
-import React,{useState} from "react";
+import React,{useState,Fragment} from "react";
 import Axios from "axios"
 import Navbar from "./Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.css'; // or include from a CDN
 import 'react-bootstrap-country-select/dist/react-bootstrap-country-select.css';
-
+import {Row,Col} from "react-bootstrap"
 
 
 function EditCustomerProfile() {
 
+  const customerName = (JSON.parse(localStorage.getItem("user"))[0]["name"]);
 
-  const[customerName,setCustomerName]= useState("");
+  const[customerPicture,setCustomerPicture]=useState("");
   const [dob,setDob] = useState("");
   const [city,setCity] = useState("");
   const [state,setState] = useState("");
@@ -18,41 +19,132 @@ function EditCustomerProfile() {
   const [email,setEmail]=useState("");
   const [phone,setPhone]=useState("");
 
-
-
-  const editProfile = () =>{
-    Axios.put("http://localhost:3001/EditCustomerProfile",
-    {
-      customerName:customerName,
-      dob:dob,
-      city:city,
-      state:state,
-      country:country,
-      nickName:nickName,
-      email:email,
-      phone:phone
-    })
-    alert("Updated successfully!");
+  const convertBase64=(file)=>{
+    return new Promise((resolve,reject)=>{
+      const fileReader=new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload=()=>{
+        resolve(fileReader.result)
+      };
+    });
   }
 
+  const handleImageChange = async (e) => {
+    const selected=e.target.files[0];
+    const base64=await convertBase64(selected);
+    setCustomerPicture(base64);
+    const ALLOWED_TYPES = ["image/png","image/jpeg","image/jpg"];
+    if(selected&&ALLOWED_TYPES.includes(selected.type)){
+      let reader=new FileReader();
+      reader.onloadend=()=>{
+        setCustomerPicture(reader.result);
+      }
+      reader.readAsDataURL(selected);
+    }
+  }
+
+  const uploadPhoto = () =>{
+  Axios.put("http://localhost:3001/EditCustomerPhoto",{
+    customerName:customerName,
+    customerPicture:customerPicture
+  })
+    alert("Updated successfully!");
+
+  }
+
+  const editDOB = () =>{
+  Axios.put("http://localhost:3001/EditCustomerDOB",{
+    customerName:customerName,
+    dob:dob
+  })
+    alert("Updated successfully!");
+
+  }
+
+  const editCity = () =>{
+  Axios.put("http://localhost:3001/EditCustomerCity",{
+    customerName:customerName,
+    city:city
+  })
+    alert("Updated successfully!");
+
+  }
+  const editState = () =>{
+  Axios.put("http://localhost:3001/EditCustomerState",{
+    customerName:customerName,
+    state:state
+  })
+    alert("Updated successfully!");
+
+  }
+  const editCountry = () =>{
+  Axios.put("http://localhost:3001/EditCustomerCountry",{
+    customerName:customerName,
+    country:country
+  })
+    alert("Updated successfully!");
+
+  }
+  const editNickName = () =>{
+  Axios.put("http://localhost:3001/EditNickName",{
+    customerName:customerName,
+    nickName:nickName
+  })
+    alert("Updated successfully!");
+
+  }
+  const editEmail = () =>{
+  Axios.put("http://localhost:3001/EditCustomerEmail",{
+    customerName:customerName,
+    email:email
+  })
+    alert("Updated successfully!");
+
+  }
+  const editNumber = () =>{
+  Axios.put("http://localhost:3001/EditCustomerNumber",{
+    customerName:customerName,
+    phone:phone
+  })
+    alert("Updated successfully!");
+    
+  }
+
+
+
+
+
+
+
+
+
+
   return (
-    <div className="card">
+
+     <Fragment>
     <Navbar />
-    <div className="card-body" style={{marginTop:"30px"}}>
+    <Row style={{margin:"100px"}}>
+    <Col>
     <input
-     type="text"
-     className = "form-control"
-     name="customerName"
-     placeholder="Name"
-     defaultValue={JSON.parse(localStorage.getItem("user"))[0]["name"]}
-     onChange = {
-       (e) => {
-         setCustomerName(e.target.value);
-       }
-     }
-    />
-    </div>
-    <div className="card-body">
+    type="file"
+    id="fileUpload"
+    className="form-control"
+    placeholder="image"
+    onChange={
+      (e)=>
+      {
+        handleImageChange(e)
+      }}
+      />
+    <span>(jpeg, jpeg or png</span>
+      )
+      </Col>
+      <Col>
+  <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={uploadPhoto}>✔️</button>
+      </Col>
+      </Row>
+        <Row style={{margin:"100px"}}>
+        <Col>
     <input
     type="date"
     className = "form-control"
@@ -65,8 +157,13 @@ function EditCustomerProfile() {
       }
     }
      />
-    </div>
-    <div className="card-body">
+    </Col>
+    <Col>
+     <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editDOB}>✔️</button>
+     </Col>
+     </Row>
+       <Row style={{margin:"100px"}}>
+       <Col>
     <input
      type="text"
     className = "form-control"
@@ -78,8 +175,13 @@ function EditCustomerProfile() {
        }
      }
     />
-    </div>
-    <div className="card-body">
+    </Col>
+    <Col>
+    <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editCity}>✔️</button>
+    </Col>
+    </Row>
+    <Row style={{margin:"100px"}}>
+    <Col>
     <input
      type="text"
     className = "form-control"
@@ -91,8 +193,13 @@ function EditCustomerProfile() {
        }
      }
     />
-    </div>
-    <div className="card-body">
+    </Col>
+    <Col>
+    <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editState}>✔️</button>
+    </Col>
+    </Row>
+    <Row style={{margin:"100px"}}>
+    <Col>
   <select type="text"
   className = "form-control"
   name="country"
@@ -348,19 +455,29 @@ function EditCustomerProfile() {
    <option value="Zambia">Zambia</option>
    <option value="Zimbabwe">Zimbabwe</option>
    </select>
-    </div>
-    <div className="card-body">
+   </Col>
+   <Col>
+   <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editCountry}>✔️</button>
+   </Col>
+   </Row>
+   <Row style={{margin:"100px"}}>
+   <Col>
     <input
     type="text"
     className = "form-control"
-    name="email"
+    name="nickName"
     placeholder="Nick Name"
     onChange= { e => {
       setNickName(e.target.value);
     }}
     />
-    </div>
-    <div className="card-body">
+    </Col>
+    <Col>
+    <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editNickName}>✔️</button>
+    </Col>
+    </Row>
+    <Row style={{margin:"100px"}}>
+    <Col>
     <input
     className = "form-control"
     type="text"
@@ -372,8 +489,13 @@ function EditCustomerProfile() {
       }
     }
      />
-    </div>
-    <div className="card-body">
+     </Col>
+     <Col>
+     <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editEmail}>✔️</button>
+     </Col>
+     </Row>
+     <Row style={{margin:"100px"}}>
+     <Col>
     <input
     className = "form-control"
     placeholder="Phone Number"
@@ -385,9 +507,13 @@ function EditCustomerProfile() {
       }
     }
      />
-    </div>
-    <button type="button" class="btn btn-outline-light" onClick={editProfile}>Save Changes</button>
-  </div>
+     </Col>
+     <Col>
+     <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editNumber}>✔️</button>
+     </Col>
+     </Row>
+      </Fragment>
+
   )
 }
 

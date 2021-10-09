@@ -4,7 +4,6 @@ import Axios from "axios";
 import NavigationBar from "../LogOut/NavigationBar.jsx"
 import Links from "../LogOut/link.js"
 
-
 function RestaurantLogin() {
 
     const[emailErr,setEmailErr]=useState({});

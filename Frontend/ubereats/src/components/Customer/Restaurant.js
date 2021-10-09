@@ -31,10 +31,15 @@ function addToFavorites() {
 
 
   function getRestaurantLanding(){
+
     Axios.get("http://localhost:3001/Restaurant")
     .then((response) => {
-          setRes(response.data.details[(restaurant.id)-1]);
-          localStorage.setItem("res", JSON.stringify(response.data.details[(restaurant.id)-1]));
+          // console.log("id",(restaurant.id)-1)
+          var tempRestaurantObj = {"restaurantName":restaurant.restaurantName}
+          setRes((restaurant.restaurantName));
+          localStorage.setItem("res",JSON.stringify(tempRestaurantObj));
+          // setRes(response.data.details);
+          // localStorage.setItem("res", JSON.stringify(response.data.details));
           window.open("/CustomerRestaurant","_self");
     })
 
@@ -42,8 +47,9 @@ function addToFavorites() {
   };
 
   return(
+
       <div className="card restaurant-style" style={{width:"66%"}}>
-        <img src={`data:image/jpeg;base64,${restaurant.picture}`} className="card-img-top" alt="dish-img" style={{width:"300px",height:"150px"}} />
+        <img src={restaurant.picture} className="card-img-top" alt="dish-img" style={{width:"300px",height:"150px"}} />
         <button id="heart" type="button" style={{width:"30px",backgroundColor:"white",border:"none"}} onClick={addToFavorites}>
         {(fav === false) ?
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" className="svg-inline--fa fa-heart fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -57,7 +63,7 @@ function addToFavorites() {
         </svg>}
         </button>
           <div className="card-body">
-            <a href="#" onClick={getRestaurantLanding} style={{color:"green"}}><h5 className="card-title">{`${restaurant.restaurantName}`}</h5></a>
+            <button type="button" className="btn btn-link" onClick={()=>{getRestaurantLanding(restaurant.restaurantName)}} style={{color:"green"}}><h5 className="card-title">{`${restaurant.restaurantName}`}</h5></button>
           </div>
       </div>
     )

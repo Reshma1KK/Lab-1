@@ -1,42 +1,33 @@
-import React,{useState,Fragment} from 'react';
+import React,{useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Row,Col} from "react-bootstrap";
+
 
 
 
 function Reciept({order}){
-  //if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
+
   return(
-    <Fragment>
-    <div className="conatiner-fluid" style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"20px", fontSize:"1.2rem"}}>
-          <Row>
-            <Col>
-              {order.restaurant_name}
-              </Col>
-          </Row>
-          <Col>
-              {order.customer_name}
-          </Col>
-           <Col>
-               {order.location}
-           </Col>
-            <Col>
-                {order.dish_name}
-            </Col>
-             <Col>
-                 {order.price}
-             </Col>
-            <Col>
-                {order.total}
-            </Col>
+     <div>
+      <div className="container-fluid">
+        <div className="card mb-12">
+          <div className="row g-0">
+          <div className="col-md-12">
+            <div className="card-body" style={{backgroundColor:"black",color:"white"}}>
+                <h5 className="card-title" style={{backgroundColor:"black",color:"white"}}>{`${order.restaurant_name}`}</h5>
+                <h5 className="card-title" style={{backgroundColor:"black",color:"white"}}>{`${order.location}`}</h5>
+                <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.DISHES}`}</h5>
+                <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.order_status}`}</h5>
+                <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.date}`}</h5>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </Fragment>
     )
-
-
 }
 
-
+  // <button type="button" className="btn btn-link" onClick={()=>showPopUp(order.restaurant_name)} style={{border:"none"}}>order receipt</button>
 
 export default Reciept;

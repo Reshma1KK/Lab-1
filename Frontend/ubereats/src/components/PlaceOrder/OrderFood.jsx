@@ -27,25 +27,27 @@ function OrderFoor({total}){
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds();
 
+
     const OrderPlaced = () => {
       Axios.put("http://localhost:3001/AddtoCart/OrderPlaced",{
         currentOrder:currentOrder,
         name:name,
         date:date,
         restaurantName:restaurantName,
-        orderStatus:"New Order"
+        orderStatus:"New Order",
       }).then(response =>{
         console.log("Added to DB!");
       }).catch(err =>{
         console.log(err);
       })
+      localStorage.setItem("FinalCartVal","total");
       localStorage.removeItem("total");
       localStorage.setItem("cartVal","");
       alert("Order Placed Successfully!")
     }
 
     return (
-    <>
+    <div style={{marginTop:"10%"}}>
     <NavbarAddToCart />
     <Row>
     <Col>
@@ -77,7 +79,7 @@ function OrderFoor({total}){
     </div>
     </Col>
     <Col style={{padding:"50px",backgroundColor:"#E6E6E6"}} className="container-fluid">
-    <button type="button" className="btn btn-dark" onClick={showAddress}>📍</button>
+    <button type="button" className="btn btn-dark" onClick={showAddress}>Location 📍</button>
     <ModalAddress showModal={showModal} setShowModal={setShowModal} />
     {console.log(localStorage.getItem("total"))}
     <DeliveryTakeAway />
@@ -85,7 +87,7 @@ function OrderFoor({total}){
     <div className="justify-content-center rounded"><button className="btn btn-success btn-block btn-lg pay-button" type="button" style={{width:"90%", paddingTop:"10px",paddingBottom:"10px"}} onClick={OrderPlaced}>Place Order</button></div>
     </Col>
     </Row>
-    </>
+    </div>
     );
 }
 

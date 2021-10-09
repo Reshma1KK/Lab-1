@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,Fragment} from "react";
 import "./Searchbar.css";
 import {Col} from "react-bootstrap";
-import Restaurant from "../Customer/Restaurant.js"
+import Restaurant from "./RestaurantComponents.js"
 import Axios from "axios"
 import CustomerDish from "../CustomerRestaurant/CustomerDish.js"
 
@@ -54,14 +54,14 @@ function SearchBar() {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
     <div className="container justify-content-right">
     <div className="row">
-        <div className="col-md-8">
+        <div className="col-md-12">
             <div className="input-group mb-3">
             <input type="text"
-            className="form-control input-text"
+            className="form-control input-text no-outline"
             placeholder="What are you craving for...."
             aria-label="search for food"
             aria-describedby="basic-addon2"
-            style={{border: "1px solid #BFD8B8"}}
+            style={{border: "no border"}}
             onChange={
               (e)=> {
                 setSearchTerm(e.target.value);
@@ -86,10 +86,9 @@ function SearchBar() {
            || ((restaurant.restaurantName.toLowerCase()).includes(searchTerm.toLowerCase()))) {
            return true;
           }}).map(function(restaurant){
-           return(<Col sm={48} md={24} lg={12} key={restaurant.id}>
-             <h2>Search results:</h2>
+           return(<Fragment key={restaurant.id} style={{width:"100%"}}>
              <Restaurant restaurant={restaurant} />
-             </Col>
+             </Fragment>
           )
         })
       }
@@ -100,10 +99,9 @@ function SearchBar() {
      else if(((restaurant.dishes.toLowerCase()).includes(searchTerm.toLowerCase()))) {
      return true;
    }}).map(function(restaurant){
-     return(<Col sm={12} md={6} lg={4} key={restaurant.id}>
-       <h2>Search results:</h2>
-       <Restaurant restaurant={restaurant} />
-       </Col>
+     return(<Fragment key={restaurant.id} >
+       <Restaurant restaurant={restaurant}/>
+       </Fragment>
     )
   })
 }

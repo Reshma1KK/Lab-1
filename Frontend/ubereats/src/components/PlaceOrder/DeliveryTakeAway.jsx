@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import Axios from "axios"
+import {Row,Col} from "react-bootstrap";
 
 function DeliveryTakeAway() {
 
@@ -15,7 +16,8 @@ function DeliveryTakeAway() {
 
     return (
       <>
-        <div className="row" style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"10px", marginTop:"90px"}}>
+      <Row style={{margin:"10%"}}>
+      <Col>
         <select
         className="form-value"
         name="delivery"
@@ -30,12 +32,11 @@ function DeliveryTakeAway() {
           <option value="Delivery">Delivery</option>
           <option value="Pickup">Pickup</option>
         </select>
-        </div>
-            <div className="padding">
+        </Col>
+        <Col>
             <button type="button" style={{borderRadius:"100%",backgroundColor:"green"}} onClick={storeStatus}>✔️</button>
-            </div>
-            <div className="padding">
-            </div>
+        </Col>
+          </Row>
         </>
     )
 }

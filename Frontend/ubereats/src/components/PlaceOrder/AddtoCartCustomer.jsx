@@ -37,7 +37,7 @@ return(
              {cartItems.filter(function(cart) {
                return true;
              }).map(function(cart){
-               return(<div className="container-fluid" style={{margin:"10px",lineHeight:"1.2px", fontSize:"1.1rem"}} key={cart.id}>
+               return(<div className="container-fluid" key={cart.id}>
                  <AddtoCartItemOrderFood cart={cart} />
                  </div>
              )

@@ -29,13 +29,11 @@ return(
           <Row>
           </Row>
            <Row>
-             <hr />
-             <h3>CART ITEMS</h3>
-             <hr />
+             <h3 style={{color:"white"}}>CART ITEMS</h3>
              {cartItems.filter(function(cart) {
                return true;
              }).map(function(cart){
-               return(<div className="container-fluid" style={{fontSize:"1rem"}} key={cart.id}>
+               return(<div className="container-fluid" style={{fontSize:"1rem",color:"white"}} key={cart.id}>
                  <AddtoCartItem cart={cart} />
                  </div>
              )

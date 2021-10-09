@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
-import NavBar from "../LogOut/NavBar.jsx";
 import {alert} from "react";
 
 function RestaurantSignup() {
@@ -30,10 +29,10 @@ function RestaurantSignup() {
           })
         window.open("./RestaurantLogin","_self");
       }
-      setrestaurantName("");
-      setEmail("");
-      setrestaurantPassword("");
-      setrestaurantLocation("");
+
+    }
+    function stringContainsNumber(_string) {
+      return /\d/.test(_string);
     }
 
       const formValidation = () => {
@@ -42,6 +41,12 @@ function RestaurantSignup() {
         const passwordErr={};
         const restaurantLocationErr={};
         let isValid=true;
+
+        if(stringContainsNumber(restaurantName)){
+          restaurantNameErr.nameContainsNumerics="Name cannot contains numerics";
+          isValid=false;
+        }
+
 
         if(restaurantName.trim().length < 3){
           restaurantNameErr.nameIsShort="Name is too short";
@@ -89,7 +94,6 @@ function RestaurantSignup() {
 
   return (
     <div>
-    <NavBar />
     <h1 className="customer-heading">Uber <span className="heading-eats">Eats</span></h1>
     <h1 className="form-floating">Restaurant SignUp</h1>
     <div className="form-floating" encType="multipart/form-data">
@@ -130,6 +134,9 @@ function RestaurantSignup() {
       </div>
      <div className="d-grid gap-2 form-floating">
      <button onClick={restaurantSignup} type="button" className="btn btn-outline-primary">Continue</button>
+     </div>
+     <div>
+     <h2 style={{textAlign:"center",fontSize:"1.1rem", fontFamily:"Poppins'"}}>Have an Account?<a href="http://localhost:3000/RestaurantLogin" style={{color:"green", fontSize:"1rem"}}>Sign In</a></h2>
      </div>
      </div>
    );

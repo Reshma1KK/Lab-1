@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {ModalReciept} from "../CustomComponents/ModalReciept.js"
+import {ModalReciept} from "../CustomComponents/ModalReciept.jsx"
 
 
 
@@ -8,9 +8,6 @@ function CustomerOrder({order}){
 
   const [showModal,setShowModal]=useState(false);
 
-  const showPopUp = () => {
-    setShowModal(prev=> !prev);
-  }
   //if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
   return(
      <div>
@@ -24,8 +21,8 @@ function CustomerOrder({order}){
                 <h5 className="card-text">{`${order.order_status}`}</h5>
                 <h5 className="card-text">{`${order.date}`}</h5>
                 <h5 className="card-text">{`${order.delivery_status}`}</h5>
-                <button type="button" className="btn btn-link" onClick={()=>showPopUp(order.restaurant_name)} style={{border:"none"}}>order receipt</button>
-                <ModalReciept showModal={showModal} setShowModal={setShowModal} />
+                <button type="button" className="btn btn-link openModalBtn" onClick={()=>{setShowModal(true,JSON.stringify(localStorage.setItem("resName",order.restaurant_name)))}} style={{border:"none"}}>order receipt</button>
+                {showModal && <ModalReciept closeModal={setShowModal}/>}
               </div>
             </div>
           </div>
@@ -37,6 +34,6 @@ function CustomerOrder({order}){
 
 }
 
-
+  // <button type="button" className="btn btn-link" onClick={()=>showPopUp(order.restaurant_name)} style={{border:"none"}}>order receipt</button>
 
 export default CustomerOrder;

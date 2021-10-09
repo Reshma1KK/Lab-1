@@ -12,9 +12,9 @@ function NavBar() {
 
   const [showModal,setShowModal]=useState(false);
 
-  const showPopUp = () => {
-    setShowModal(prev=> !prev);
-  }
+  // const showPopUp = () => {
+  //   setShowModal(prev=> !prev);
+  // }
 
 
   return(
@@ -31,8 +31,8 @@ function NavBar() {
         <a className="nav-link active" aria-current="page" href="http://localhost:3000/CustomerPage">{JSON.parse(localStorage["user"])[0].name}<span style={{color:"green"}}> ,View Account</span></a>
         </li>
         <li className="nav-item">
-        <button type="button" className="btn btn-dark" style={{backgroundColor:"black"}} onClick={showPopUp}><span><img src={image} alt="" style={{width:"20px", color:"#fff"}}/></span>Cart</button>
-        <Modal showModal={showModal} setShowModal={setShowModal} />
+        <button type="button" className="btn btn-dark openModalBtn" style={{backgroundColor:"black"}} onClick={()=>{setShowModal(true)}}><span><img src={image} alt="" style={{width:"20px", color:"#fff"}}/></span>Cart</button>
+        {showModal && <Modal closeModal={setShowModal}/>}
         </li>
         <li className="nav-item">
         <a className="nav-link" href="http://localhost:3000/" onClick={()=>{localStorage.clear();}}>Logout</a>

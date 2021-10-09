@@ -1,9 +1,8 @@
-
 import React,{useState,useEffect} from 'react';
 import Axios from "axios";
 import {Col} from "react-bootstrap";
 import Order from "../RestaurantOrderPage/Order.jsx"
-import "../CustomComponents/Filter.css";
+// import "../CustomComponents/Filter.css";
 
 
 function Filter() {
@@ -13,7 +12,7 @@ function Filter() {
 
 const[newOrderIsChecked,setNewOrderIsChecked] = useState(false);
 const[deleveredIsChecked,setDeliveredIsChecked] = useState(false);
-const[cancelledOrder,setCancelledOrder] = useState(false);
+const[cancelledOrderIsChecked,setCancelledOrderIsChecked] = useState(false);
 
 
 
@@ -29,21 +28,17 @@ const getAllOrders = () =>{
         getOrders(allOrders);
     })
     .catch(error =>
-      console.error(`Error:{error}`));
+      console.error(error));
   }
 
 
     return (
-        <div className="container-fluid" style={{marginTop:"0px", fontSize:"20px"}}>
-        <div>
-        <div className="container">
-        <div className="row">
 
-          <div className="col-md-8">
-            <h2 className="grid-title"><i className="fa fa-filter"></i> Filters</h2>
-            <hr />
+      <>
+          <div className="container-fluid" style={{fontFamily:"Postmates",fontWeight:"bold",textAlign:"justify",margin:"3%",backgroundColor:"#F0E5CF",color:"black"}}>
+            <h2 style={{marginTop:"50px", fontSize:"1rem",fontFamily:"Postmates", fontWeight:"bold",color:"black"}}>Filters</h2>
 
-            <h4>Order Status:</h4>
+            <h4 style={{marginTop:"0px", fontSize:"1rem",fontFamily:"Postmates", fontWeight:"bold",color:"black"}}>Order Status:</h4>
             <div class="checkbox">
               <label><input
               type="checkbox"
@@ -64,11 +59,9 @@ const getAllOrders = () =>{
             <div className="checkbox1">
               <label><input
               type="checkbox"
-               className="icheck"
                name="delivery"
                checked={deleveredIsChecked}
                value="delivered"
-               id="check2"
               onChange={
                 (e) => {
                   console.log(e.target.value);
@@ -79,46 +72,40 @@ const getAllOrders = () =>{
               Delivered
               </label>
             </div>
-            <div className="padding">
-            </div>
 
             <div className="checkbox2">
               <label>
               <input
               type="checkbox"
-              className="icheck"
               value="cancelledOrder"
-              checked={cancelledOrder}
+              checked={cancelledOrderIsChecked}
               onChange={
                 (e) => {
-                  setCancelledOrder(e.target.checked);
+                  setCancelledOrderIsChecked(e.target.checked);
                 }
               }
               /> Cancelled
               </label>
-            </div>
+              </div>
+           </div>
 
-            <div className="padding">
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
          {orders.filter(function(order) {
-        if(newOrderIsChecked==="" && deleveredIsChecked==="" && cancelledOrder==""){
+        if(newOrderIsChecked==="" && deleveredIsChecked==="" && cancelledOrderIsChecked==""){
           return false;
         }
-        else if((((order.order_status.toLowerCase()).includes("New Order".toLowerCase())) && newOrderIsChecked===true)
-        || (((order.order_status.toLowerCase()).includes("Delivered".toLowerCase())) && deleveredIsChecked===true) ||
-        (((order.order_status.toLowerCase()).includes("Cancelled".toLowerCase())) && cancelledOrder===true))  {
+        else if(((((order.order_status||"").toLowerCase()).includes("New Order".toLowerCase())) && newOrderIsChecked===true)
+        || ((((order.order_status||"").toLowerCase()).includes("Delivered".toLowerCase())) && deleveredIsChecked===true) ||
+        ((((order.order_status||"").toLowerCase()).includes("Cancelled".toLowerCase())) && cancelledOrderIsChecked===true))  {
         return true;
       }}).map(function(order){
            return(<div key={order.id}>
              <Order order={order} />
-           </div>
-         )
-       })}
-       </div>
+            </div>
+
+           )
+       })
+     }
+     </>
     )
 }
 
