@@ -7,7 +7,7 @@ const cors = require("cors");
 const alert = require("alert");
 const multer = require("multer");
 const bcrypt=require("bcrypt");
-const ipAddress = `52.15.59.71`;
+
 // const {encrypt,decrypt} = require("./EncryptionHandler");
 
 
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.listen(`http://${ipAddress}:3000`, () => {
+app.listen(`52.15.59.71`, () => {
   console.log("Running on port 3001");
 });
 
