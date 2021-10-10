@@ -8,7 +8,7 @@ import {ModalAddress} from "../CustomComponents/ModalAddress.js"
 import DeliveryTakeAway from "./DeliveryTakeAway.jsx"
 
 
-function OrderFoor({total}){
+function OrderFood({total}){
 
 
     const [showModal,setShowModal]=useState(false);
@@ -58,6 +58,7 @@ function OrderFoor({total}){
       localStorage.removeItem("total");
       localStorage.setItem("cartVal","");
       alert("Order Placed Successfully!")
+      window.open("/OrderFoodSuccess","_self");
     }
 
     return (
@@ -105,4 +106,4 @@ function OrderFoor({total}){
     );
 }
 
-export default OrderFoor
+export default OrderFood

@@ -21,6 +21,7 @@ import PastOrders from "./components/PastOrders/PastOrders.jsx"
 import OrdersPage from "./components/RestaurantOrderPage/OrdersPage.jsx"
 import DisplayProfile from "./components/RestaurantOrderPage/DisplayProfile.jsx"
 import ModalDialogue from "./components/CustomComponents/ModalDialogue.jsx"
+import OrderFoodSuccess from "./components/PlaceOrder/OrderFoodSuccess.jsx"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 
@@ -49,6 +50,7 @@ function App() {
       <ProtectedRoute exact path="/OrdersPage" component={OrdersPage} isAuthenticated={true}/>
     <ProtectedRoute exact path="/DisplayProfile" component={DisplayProfile} isAuthenticated={true}/>
     <ProtectedRoute exact path="/ModalDialogue" component={ModalDialogue} isAuthenticated={true}/>
+    <ProtectedRoute exact path="/OrderFoodSuccess" component={OrderFoodSuccess} isAuthenticated={true}/>
     </Switch>
   </Router>
    </div>
