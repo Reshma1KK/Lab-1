@@ -21,7 +21,7 @@ function CustomerOrder({order}){
                 <h5 className="card-text">{`${order.order_status}`}</h5>
                 <h5 className="card-text">{`${order.date}`}</h5>
                 <h5 className="card-text">{`${order.delivery_status}`}</h5>
-                <button type="button" className="btn btn-link openModalBtn" onClick={()=>{setShowModal(true,JSON.stringify(localStorage.setItem("resName",order.restaurant_name)))}} style={{border:"none"}}>order receipt</button>
+                <button type="button" className="btn btn-link openModalBtn" onClick={()=>{setShowModal(true,(localStorage.setItem("resName",order.restaurant_name)))}} style={{border:"none"}}>order receipt</button>
                 {showModal && <ModalReciept closeModal={setShowModal}/>}
               </div>
             </div>

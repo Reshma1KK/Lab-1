@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Reciept({order}){
 
+
   return(
      <div>
       <div className="container-fluid">
@@ -25,6 +26,7 @@ function Reciept({order}){
       </div>
     </div>
     )
+
 }
 
   // <button type="button" className="btn btn-link" onClick={()=>showPopUp(order.restaurant_name)} style={{border:"none"}}>order receipt</button>

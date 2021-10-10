@@ -754,7 +754,7 @@ app.get("/CustomerHistory", (req, res) => {
   })
 })
 app.get("/CustomerReciept", (req, res) => {
-  const sqlSELECT = "SELECT customer_name,restaurant_name,date,order_status,location,price, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY date";
+  const sqlSELECT = "SELECT customer_name,temp,restaurant_name,date,order_status,location,price, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY temp";
   connection.query(sqlSELECT, (err, result) => {
     if (err) {
       return res.send(err);

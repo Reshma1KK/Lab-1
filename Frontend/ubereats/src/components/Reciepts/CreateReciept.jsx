@@ -32,12 +32,12 @@ function CreateReciept({}) {
          <Row>
 
          {customerData.filter(function(order) {
-           localStorage.setItem("id",order.id);
            if (!((JSON.parse(localStorage.getItem("user"))[0]["name"]) === (order.customer_name))) {
              return false;
            }
            else if(order.restaurant_name === localStorage.getItem("resName")){
              return true;
+
            }
          }).map(function(order){
            return(<Col sm={12} md={12} lg={12} key={order.id}>
