@@ -15,7 +15,7 @@ export const ModalReciept = ({closeModal}) => {
         <button type="button" onClick={()=>{closeModal(false)}}>x</button>
         </div>
         <div className="title">
-        <h5>View Reciept</h5>
+        <h5 style={{color:"white"}}>Reciept</h5>
         </div>
         <div className="body">
         <CreateReciept />

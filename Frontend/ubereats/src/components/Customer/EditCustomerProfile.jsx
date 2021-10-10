@@ -9,7 +9,7 @@ import {Row,Col} from "react-bootstrap"
 function EditCustomerProfile() {
 
   const customerName = (JSON.parse(localStorage.getItem("user"))[0]["name"]);
-
+  const[newName,setNewName] = useState("");
   const[customerPicture,setCustomerPicture]=useState("");
   const [dob,setDob] = useState("");
   const [city,setCity] = useState("");
@@ -18,6 +18,7 @@ function EditCustomerProfile() {
   const [nickName,setNickName] = useState("");
   const [email,setEmail]=useState("");
   const [phone,setPhone]=useState("");
+  const [pass,newPass]=useState("");
 
   const convertBase64=(file)=>{
     return new Promise((resolve,reject)=>{
@@ -43,6 +44,32 @@ function EditCustomerProfile() {
     }
   }
 
+  const editCustomerName = () =>{
+  Axios.put("http://localhost:3001/EditCustomerNameInCartItems",{
+    customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
+    newName:newName
+  }).catch(err =>(
+    console.log(err)
+  ))
+  Axios.put("http://localhost:3001/EditCustomerNameInFav",{
+    customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
+    newName:newName
+  }).catch(err =>(
+    console.log(err)
+  ))
+
+  Axios.put("http://localhost:3001/EditCustomerNameInCustomerSignUp",{
+    customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
+    newName:newName
+  }).catch(err =>(
+    console.log(err)
+  ))
+// localStorage.setI(("user"))[0]["name"],newName);
+
+  }
+
+
+
   const uploadPhoto = () =>{
   Axios.put("http://localhost:3001/EditCustomerPhoto",{
     customerName:customerName,
@@ -66,32 +93,28 @@ function EditCustomerProfile() {
     customerName:customerName,
     city:city
   })
-    alert("Updated successfully!");
-
+alert("Updated successfully!");
   }
   const editState = () =>{
   Axios.put("http://localhost:3001/EditCustomerState",{
     customerName:customerName,
     state:state
   })
-    alert("Updated successfully!");
-
+alert("Updated successfully!");
   }
   const editCountry = () =>{
   Axios.put("http://localhost:3001/EditCustomerCountry",{
     customerName:customerName,
     country:country
   })
-    alert("Updated successfully!");
-
+alert("Updated successfully!");
   }
   const editNickName = () =>{
   Axios.put("http://localhost:3001/EditNickName",{
     customerName:customerName,
     nickName:nickName
   })
-    alert("Updated successfully!");
-
+alert("Updated successfully!");
   }
   const editEmail = () =>{
   Axios.put("http://localhost:3001/EditCustomerEmail",{
@@ -107,7 +130,7 @@ function EditCustomerProfile() {
     phone:phone
   })
     alert("Updated successfully!");
-    
+
   }
 
 
@@ -123,6 +146,24 @@ function EditCustomerProfile() {
 
      <Fragment>
     <Navbar />
+    <Row style={{margin:"100px"}}>
+    <Col>
+   <input
+    type="text"
+   className = "form-control"
+    name="newName"
+    placeholder="Name"
+    onChange = {
+      (e) => {
+        setNewName(e.target.value);
+      }
+    }
+   />
+   </Col>
+   <Col>
+ <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editCustomerName}>✔️</button>
+ </Col>
+ </Row>
     <Row style={{margin:"100px"}}>
     <Col>
     <input
@@ -480,7 +521,7 @@ function EditCustomerProfile() {
     <Col>
     <input
     className = "form-control"
-    type="text"
+    type="email"
     placeholder="E-Mail"
     name="email"
     onChange = {
@@ -499,7 +540,7 @@ function EditCustomerProfile() {
     <input
     className = "form-control"
     placeholder="Phone Number"
-    type="text"
+    type="tel"
     name="phone"
     onChange = {
       (e) => {

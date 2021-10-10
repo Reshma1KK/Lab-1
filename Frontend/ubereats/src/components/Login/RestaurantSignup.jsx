@@ -14,6 +14,7 @@ function RestaurantSignup() {
     const [email,setEmail]=useState("");
     const [restaurantPassword,setrestaurantPassword]=useState("");
     const [restaurantLocation,setrestaurantLocation]=useState("");
+    const [status,setStatus]=useState("");
 
     const restaurantSignup = (e) => {
       e.preventDefault();
@@ -23,7 +24,8 @@ function RestaurantSignup() {
         name:restaurantName,
         email:email,
         password:restaurantPassword,
-        location:restaurantLocation
+        location:restaurantLocation,
+        status:status
         }).then (() =>{
         alert("Successfully Inserted");
           })
@@ -131,6 +133,24 @@ function RestaurantSignup() {
       {Object.keys(restaurantLocationErr).map((key)=>{
         return <div style={{color:"red"}}>{restaurantLocationErr[key]}</div>
       })}
+      </div>
+       <div className="form-floating">
+        <select
+        className="form-control"
+        name="delivery"
+        required
+        onChange={
+          (e)=>{
+            setStatus(e.target.value);
+          }}
+          >
+          <option value="select">Select</option>
+          <option value="Delivery">Delivery</option>
+          <option value="Pickup">Pickup</option>
+          <option value="Pickup/Delivery">Pickup/Delivery</option>
+          >
+          </select>
+        <label htmlFor="floatingDelivery">Type</label>
       </div>
      <div className="d-grid gap-2 form-floating">
      <button onClick={restaurantSignup} type="button" className="btn btn-outline-primary">Continue</button>

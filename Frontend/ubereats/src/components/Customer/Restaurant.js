@@ -31,12 +31,15 @@ function addToFavorites() {
 
 
   function getRestaurantLanding(){
-
+    console.log("liverpool fc");
     Axios.get("http://localhost:3001/Restaurant")
     .then((response) => {
+
           // console.log("id",(restaurant.id)-1)
           var tempRestaurantObj = {"restaurantName":restaurant.restaurantName}
           setRes((restaurant.restaurantName));
+
+          //console.log("Temo restaurant object Liverpool "+ JSON.stringify(tempRestaurantObj));
           localStorage.setItem("res",JSON.stringify(tempRestaurantObj));
           // setRes(response.data.details);
           // localStorage.setItem("res", JSON.stringify(response.data.details));
@@ -48,7 +51,7 @@ function addToFavorites() {
 
   return(
 
-      <div className="card restaurant-style" style={{width:"66%"}}>
+      <div className="card restaurant-style border-0" style={{width:"66%",boxShadowTop: "0px",boxShadowBottom:"0px",boxShadowTop:"5px", color:"#fff"}}>
         <img src={restaurant.picture} className="card-img-top" alt="dish-img" style={{width:"300px",height:"150px"}} />
         <button id="heart" type="button" style={{width:"30px",backgroundColor:"white",border:"none"}} onClick={addToFavorites}>
         {(fav === false) ?
@@ -62,8 +65,8 @@ function addToFavorites() {
         </path>
         </svg>}
         </button>
-          <div className="card-body">
-            <button type="button" className="btn btn-link" onClick={()=>{getRestaurantLanding(restaurant.restaurantName)}} style={{color:"green"}}><h5 className="card-title">{`${restaurant.restaurantName}`}</h5></button>
+          <div className="card-footer" style={{backgroundColor:"black",textAlign:"center"}}>
+            <button type="button" className="btn btn-link" onClick={()=>{getRestaurantLanding(restaurant.restaurantName)}} style={{color:"white",textDecoration:"none",padding:"0"}}><h5 className="card-title" style={{backgroundColor:"black"}}>{`${restaurant.restaurantName}`}</h5></button>
           </div>
       </div>
     )

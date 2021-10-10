@@ -18,7 +18,6 @@ function Reciept({order}){
                 <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.DISHES}`}</h5>
                 <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.order_status}`}</h5>
                 <h5 className="card-text" style={{backgroundColor:"black",color:"white"}}>{`${order.date}`}</h5>
-
               </div>
             </div>
           </div>

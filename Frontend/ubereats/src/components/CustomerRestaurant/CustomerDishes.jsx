@@ -33,7 +33,7 @@ function CustomerDishes() {
             getDishes(allDishes);
         })
         .catch(error =>
-          console.error(`Error:${error}`));
+          console.error(error));
     }
 
       return(

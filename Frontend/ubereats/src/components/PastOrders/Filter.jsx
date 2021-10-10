@@ -37,7 +37,7 @@ const getAllOrders = () =>{
 
   return (
 
-    <div className="container-fluid"  style={{fontFamily:"Postmates",fontWeight:"bold",textAlign:"justify",margin:"3%",backgroundColor:"#F0E5CF",color:"black"}}>
+    <div className="container-fluid"  style={{fontFamily:"Postmates",fontWeight:"bold",textAlign:"justify",margin:"3%",backgroundColor:"#FBF4E9",color:"black"}}>
         <div>
           <h2 className="grid-title" style={{marginTop:"50px", fontSize:"1rem",fontFamily:"Postmates", fontWeight:"bold",color:"black"}}><i className="fa fa-filter"></i> Filters</h2>
 

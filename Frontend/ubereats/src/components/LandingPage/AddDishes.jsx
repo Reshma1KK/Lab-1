@@ -13,6 +13,7 @@ function AddDishes() {
   const [dishPrice,setDishPrice] = useState("");
   const [dishDescription,setDishDescription] = useState("");
   const [dishCategory,setDishCategory] = useState("");
+  const [type,setType]=useState("");
 
   const convertBase64=(file)=>{
     return new Promise((resolve,reject)=>{
@@ -46,7 +47,8 @@ function AddDishes() {
       dishPrice:dishPrice,
       dishDescription:dishDescription,
       dishCategory:dishCategory,
-      resName:resName
+      resName:resName,
+      type:type
     }).then((response) =>{
       console.log(response)
     }).catch(err =>{
@@ -118,6 +120,22 @@ function AddDishes() {
     }}
     />
     </div>
+      <div className="card-body" style={{width:"1406px",heigh:"48px"}}>
+      <select
+    className = "form-control"
+      name="type_of_food"
+      required
+      onChange={
+        (e)=>{
+          setType(e.target.value);
+        }}
+      >
+        <option value="select">Select</option>
+        <option value="Veg">Veg</option>
+        <option value="Non Veg">Non Veg</option>
+        <option value="Vegan">Vegan</option>
+      </select>
+      </div>
     <div className="card-body">
     <input
     type="text"

@@ -25,7 +25,7 @@ export const Modal = ({closeModal}) => {
         <AddtoCart />
         </div>
         <div className="footer" style={{color:"white"}}>
-          <button type="button" id="cancelBtn" className="btn btn-success" style={{borderRadius:"50px",fontSize:"0.8rem"}} onClick={()=>{closeModal(false)}}>Close</button>
+        <button type="button" id="cancelBtn" className="btn btn-success" style={{borderRadius:"50px",fontSize:"0.8rem"}} onClick={()=>{closeModal(false)}}>Cancel</button>
         <button type="button" className="btn btn-success btn-md" style={{borderRadius:"50px",fontSize:"0.8rem"}} onClick={OrderFood}>Checkout</button>
         </div>
         </div>

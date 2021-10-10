@@ -6,7 +6,6 @@ import {Row,Col} from "react-bootstrap"
 
 function EditDishes(){
 
-
   const[newDishName,setNewDishName]= useState("");
   const [newDishIngredients,setNewDishIngredients] = useState("");
   const [newDishPrice,setNewDishPrice] = useState("");
@@ -124,24 +123,25 @@ function EditDishes(){
       <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editDishName}>✔️</button>
       </Col>
       </Row>
-    <Row style={{margin:"100px"}}>
-    <Col>
-    <input
-     type="text"
-     name="newDishIngredients"
-     placeholder="Ingredients"
-     className="form-control"
-     onChange = {
-       (e) => {
-         setNewDishIngredients(e.target.value);
+
+      <Row style={{margin:"100px"}}>
+      <Col>
+      <input
+       type="text"
+       name="newDishIngredients"
+       placeholder="Ingredients"
+       className="form-control"
+       onChange = {
+         (e) => {
+           setNewDishIngredients(e.target.value);
+         }
        }
-     }
-    />
-    </Col>
-    <Col>
-      <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editDishIngredients}>✔️</button>
+      />
       </Col>
-      </Row>
+      <Col>
+        <button type="button" style={{borderRadius:"100%",backgroundColor:"green",width:"30px",height:"20px"}} onClick={editDishIngredients}>✔️</button>
+        </Col>
+        </Row>
 
       <Row style={{margin:"100px"}}>
       <Col>

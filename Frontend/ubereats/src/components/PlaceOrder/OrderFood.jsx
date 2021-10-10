@@ -10,6 +10,7 @@ import DeliveryTakeAway from "./DeliveryTakeAway.jsx"
 
 function OrderFoor({total}){
 
+
     const [showModal,setShowModal]=useState(false);
 
     const showAddress = () => {
@@ -19,13 +20,25 @@ function OrderFoor({total}){
     const name = JSON.parse(localStorage["user"])[0].name;
     const restaurantName=JSON.parse(localStorage.getItem("res"))["restaurantName"];
 
+
     var currentdate = new Date();
     var date = currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/"
                 + currentdate.getFullYear() + " @ "
                 + currentdate.getHours() + ":"
                 + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
+                + currentdate.getSeconds() ;
+
+
+              var d = new Date();
+              const temp = d.getMilliseconds();
+
+
+    // var d = new Date(); // for now
+    //   d.getHours(); // => 9
+    //   d.getMinutes(); // =>  30
+    //   d.getSeconds();
+    //   d.getMilliseconds(); // => 51
 
 
     const OrderPlaced = () => {
@@ -35,6 +48,7 @@ function OrderFoor({total}){
         date:date,
         restaurantName:restaurantName,
         orderStatus:"New Order",
+        temp:temp
       }).then(response =>{
         console.log("Added to DB!");
       }).catch(err =>{
@@ -60,7 +74,7 @@ function OrderFoor({total}){
     </div>
     </div>
     </div>
-    <div className="container-fluid" style={{fontFamily:"Postmates"}}>
+    <div className="container-fluid">
     <div className="row w-100">
     <Col className="d-flex flex-row justify-content-center mt-3 p-2 rounded">
      Id

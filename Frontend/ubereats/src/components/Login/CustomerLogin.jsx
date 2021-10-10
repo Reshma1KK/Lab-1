@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import NavigationBar from "../LogOut/NavigationBar.jsx";
@@ -9,9 +9,19 @@ function CustomerLogin() {
   const[emailErr,setEmailErr]=useState({});
   const[passwordErr,setPasswordErr]=useState({});
 
+
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
     const[user,setUser] = useState("");
+
+    // const[passwordList,setPasswordList]=useState("");
+
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/ShowPassword/Customer")
+    //     .then((response) => {
+    //       setPasswordList(response.data);
+    //     })
+    // }, [])
 
 
     const[customerStatus,setCustomerSatus]=useState("");
@@ -20,10 +30,10 @@ function CustomerLogin() {
       e.preventDefault();
       const isValid = formValidation();
       if(isValid){
-      const user={email,password};
-      Axios.post("http://localhost:3001/CustomerLogin",
-      user
-      ).then((response) => {
+      Axios.post("http://localhost:3001/CustomerLogin",{
+        email:email,
+        password:password
+      }).then((response) => {
         if(response.data.message){
           localStorage.setItem("isAuthenticated","false");
           setCustomerSatus(response.data.message)
@@ -76,6 +86,7 @@ function CustomerLogin() {
     id = "floatingInput"
     placeholder = "name@example.com"
     name = "email"
+    type="email"
     onChange = {
       (e) => {
         setEmail(e.target.value);
@@ -96,6 +107,7 @@ function CustomerLogin() {
     className = "form-control"
     id = "floatingPassword"
     placeholder = "Password"
+    type="password"
     name = "password"
     onChange = {
       (e) => {

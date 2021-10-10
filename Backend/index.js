@@ -6,8 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const alert = require("alert");
 const multer = require("multer");
-
-const {encrypt,decrypt} = require("./EncryptionHandler");
+const bcrypt=require("bcrypt");
+// const {encrypt,decrypt} = require("./EncryptionHandler");
 
 
 const connection = mysql.createPool({
@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({
   limit: '50mb',
   extended: true
 }));
+
+
 
 
 app.listen(3001, () => {
@@ -68,17 +70,39 @@ app.post("/RestaurantLogin", (req, res) => {
       });
     }
   })
-
   connection.query(sqlInsert, [email, password], (err, result) => {
     console.log(err);
   })
 });
+// app.post("/RestaurantLogin", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const sqlSelect = "SELECT * FROM restaurant_signUp WHERE email_id=? AND password=?";
+//   const sqlInsert = "INSERT INTO Restaurant_signIn (restaurantName, email_id, password, location) SELECT restaurantName, email_id, password, location FROM restaurant_signUp WHERE email_id=? AND password=?"
+//
+//   connection.query(sqlSelect, [email, password], (err, result) => {
+//     if (err) {
+// //       res.send({
+// //         err: err
+// //       });
+// //     }
+// //     if (result.length > 0) {
+// //       res.send(result);
+// //     } else {
+// //       res.status(401).send('Not authorized');
+// //     }
+// //   })
+//
+//   connection.query(sqlInsert, [email, password], (err, result) => {
+//     console.log(err);
+//   })
+// });
 
 app.post("/CustomerLogin", (req, res) => {
   const email = req.body.email;
-  const password = req.body.password;
+  const password=req.body.password;
   const sqlSelect = "SELECT * FROM customer_signUp WHERE email_id=? AND password=?";
-  connection.query(sqlSelect, [email, password], (err, result) => {
+  connection.query(sqlSelect, [email,password], (err, result) => {
     if (err) {
       res.send({
         err: err
@@ -93,6 +117,25 @@ app.post("/CustomerLogin", (req, res) => {
     }
   });
 })
+// app.post("/CustomerLogin", (req, res) => {
+//   const email = req.body.email;
+//   const password=req.body.password;
+//   const sqlSelect = "SELECT * FROM customer_signUp WHERE email_id=? AND password=?";
+//   connection.query(sqlSelect, [email,password], (err, result) => {
+//     if (err) {
+//       res.send({
+//         err: err
+//       });
+//     }
+//     if (result.length > 0) {
+//       res.send(result);
+//     }
+//
+//     else {
+//        res.status(401).send("Wrong Email-ID or password!");
+//     }
+//   });
+// })
 app.get("/CustomerSignupCheck", (req, res) => {
   const sqlSelect = "SELECT * FROM customer_signUp";
   connection.query(sqlSelect, (err, result) => {
@@ -104,8 +147,10 @@ app.post("/CustomerSignup", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const hashedPassword = encrypt(password);
-  const sqlInsert = "INSERT INTO customer_signUp (name,email_id,password,iv) VALUES (?,?,?,?)"
-  connection.query(sqlInsert, [name, email, hashedPassword.password,hashedPassword.iv], (err, result) => {
+  // const sqlInsert = "INSERT INTO customer_signUp (name,email_id,password,iv) VALUES (?,?,?,?)"
+  // connection.query(sqlInsert, [name, email, hashedPassword.password,hashedPassword.iv], (err, result) => {
+    const sqlInsert = "INSERT INTO customer_signUp (name,email_id,password) VALUES (?,?,?)"
+    connection.query(sqlInsert, [name, email, password], (err, result) => {
       res.send(err);
   });
 })
@@ -121,9 +166,12 @@ app.post("/RestaurantSignup", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const location = req.body.location;
-  const hashedPassword = encrypt(password);
-  const sqlInsert = "INSERT INTO restaurant_signUp (restaurantName, email_id, password, location,iv) VALUES (?,?,?,?)"
-  connection.query(sqlInsert, [name, email, hashedPassword.password, location,hashedPassword.iv], (err, result) => {
+  const status = req.body.status;
+  // const hashedPassword = encrypt(password);
+  // const sqlInsert = "INSERT INTO restaurant_signUp (restaurantName, email_id, password, location,iv) VALUES (?,?,?,?,?)"
+  // connection.query(sqlInsert, [name, email, hashedPassword.password, location,hashedPassword.iv], (err, result) => {
+  const sqlInsert = "INSERT INTO restaurant_signUp (restaurantName, email_id, password, location,type_of_delivery) VALUES (?,?,?,?,?)"
+  connection.query(sqlInsert, [name, email, password, location,status], (err, result) => {
     console.log(err);
   });
 })
@@ -259,8 +307,9 @@ app.post("/AddDishes", (req, res) => {
   const dishDescription = req.body.dishDescription;
   const dishCategory = req.body.dishCategory;
   const resName = req.body.resName;
-  const SQLInsert = "INSERT INTO Dishes (dish_name,dish_img, dish_ingredients, dish_price, dish_description, dish_category,res_name) VALUES (?,?,?,?,?,?,?)"
-  connection.query(SQLInsert, [dishName,dishImg, dishIngredients, dishPrice, dishDescription, dishCategory, resName], (err, result) => {
+  const type=req.body.type;
+  const SQLInsert = "INSERT INTO Dishes (type_of_food,dish_name,dish_img, dish_ingredients, dish_price, dish_description, dish_category,res_name) VALUES (?,?,?,?,?,?,?,?)"
+  connection.query(SQLInsert, [type,dishName,dishImg, dishIngredients, dishPrice, dishDescription, dishCategory, resName], (err, result) => {
     if (err) {
       return res.send(err);
     } else {
@@ -512,7 +561,7 @@ app.put("/EditCustomerNumber", (req, res) => {
 })
 
 app.get("/RestaurantDisplay", (req, res) => {
-  const sqlSELECT = "SELECT id,restaurantName,location, picture, description,contact,timings,dishes,type_of_delivery,type_of_food FROM restaurant_signUp";
+  const sqlSELECT = "SELECT restaurantName,location, picture, description,contact,timings,dishes,type_of_delivery,type_of_food FROM restaurant_signUp";
   connection.query(sqlSELECT, (err, result) => {
     if (err) {
       return res.send(err);
@@ -552,11 +601,23 @@ app.post("/AddtoCart", (req, res) => {
     }
   })
 })
-app.put("/AddtoCart", (req, res) => {
+app.put("/AddtoCart/Old", (req, res) => {
+  const newLocation = req.body.newLocation;
+  const currentOrder = req.body.currentOrder;
+  const sqlInsert = "UPDATE cart_items SET location=? WHERE current_order=?";
+  connection.query(sqlInsert, [newLocation, currentOrder], (err, result) => {
+    if (err) {
+      return console.log(err);
+    } else {
+      return console.log("Inserted successfully!");
+    }
+  })
+})
+app.put("/AddtoCart/New", (req, res) => {
   const location = req.body.location;
-  const name = req.body.name;
-  const sqlInsert = "UPDATE cart_items SET location=? WHERE customer_name=?";
-  connection.query(sqlInsert, [location, name], (err, result) => {
+  const currentOrder = req.body.currentOrder;
+  const sqlInsert = "UPDATE cart_items SET location=? WHERE current_order=?";
+  connection.query(sqlInsert, [location, currentOrder], (err, result) => {
     if (err) {
       return console.log(err);
     } else {
@@ -570,8 +631,9 @@ app.put("/AddtoCart/OrderPlaced", (req, res) => {
   const date = req.body.date;
   const restaurantName = req.body.restaurantName;
   const orderStatus=req.body.orderStatus;
-  const sqlInsert = "UPDATE cart_items SET current_order=?,date=?, order_status=? WHERE customer_name=? AND restaurant_name=?";
-  connection.query(sqlInsert, [currentOrder, date,orderStatus, name, restaurantName], (err, result) => {
+  const temp=req.body.temp;
+  const sqlInsert = "UPDATE cart_items SET current_order=?,date=?, order_status=?,temp=? WHERE customer_name=? AND restaurant_name=? AND current_order=?";
+  connection.query(sqlInsert, [currentOrder, date,orderStatus,temp, name, restaurantName,1], (err, result) => {
     if (err) {
       return console.log(err);
     } else {
@@ -628,7 +690,7 @@ app.get("/Favorites", (req, res) => {
   })
 })
 app.get("/OrdersRestaurant", (req, res) => {
-  const sqlSELECT = "SELECT customer_name,restaurant_name,delivery_status, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY date"
+  const sqlSELECT = "SELECT customer_name,temp,restaurant_name,delivery_status, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY date"
   connection.query(sqlSELECT, (err, result) => {
     if (err) {
       return res.send(err);
@@ -643,9 +705,10 @@ app.put("/AddDeliveryStatus", (req, res) => {
   const delivery = req.body.delivery;
   const customerName = req.body.customerName;
   const restaurantName = req.body.restaurantName;
+  const temp=req.body.temp;
   console.log(restaurantName);
-  const sqlUpdate = "UPDATE cart_items SET order_status=? WHERE customer_name=? AND restaurant_name=?";
-  connection.query(sqlUpdate, [delivery, customerName, restaurantName], (err, result) => {
+  const sqlUpdate = "UPDATE cart_items SET order_status=? WHERE customer_name=? AND restaurant_name=? AND temp=?";
+  connection.query(sqlUpdate, [delivery, customerName, restaurantName,temp], (err, result) => {
     if (err) {
       return console.log(err);
     } else {
@@ -703,7 +766,7 @@ app.get("/CustomerReciept", (req, res) => {
   })
 })
 app.get("/CartFilter", (req, res) => {
-  const sqlSELECT = "SELECT customer_name,restaurant_name,order_status,delivery_status, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY date";
+  const sqlSELECT = "SELECT customer_name,restaurant_name,order_status,delivery_status, GROUP_CONCAT(dish_name SEPARATOR ', ') as DISHES FROM cart_items GROUP BY location";
   connection.query(sqlSELECT, (err, result) => {
     if (err) {
       return res.send(err);
@@ -733,7 +796,98 @@ app.get("/ShowPassword/Customer",(req,res) =>{
       console.log(err);
     }
     else{
-      res.send(results);
-    }  
+      res.send(result);
+    }
+  })
+})
+
+app.put("/EditResNameFav",(req,res) => {
+  const newName=req.body.newName;
+  const resName=req.body.resName;
+  const sqlUpdate ="UPDATE favorites SET restaurant_name=? WHERE restaurant_name=?";
+  connection.query(sqlUpdate,[newName,resName],(err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+app.put("/EditResNameDishes",(req,res) => {
+  const newName=req.body.newName;
+  const resName=req.body.resName;
+  const sqlUpdate ="UPDATE Dishes SET res_name=? WHERE res_name=?";
+  connection.query(sqlUpdate,[newName,resName],(err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+app.put("/EditResNameCart",(req,res) => {
+  const newName=req.body.newName;
+  const resName=req.body.resName;
+  const sqlUpdate ="UPDATE cart_items SET restaurant_name=? WHERE restaurant_name=?";
+  connection.query(sqlUpdate,[newName,resName],(err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+app.put("/EditCustomerNameInCartItems",(req,res) =>{
+  const customerName=req.body.customerName;
+  const newName=req.body.newName;
+  const sqlUpdate="UPDATE cart_items SET customer_name=? WHERE customer_name=?";
+  connection.query(sqlUpdate,[newName,customerName],(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+app.put("/EditCustomerNameInFav",(req,res) =>{
+  const customerName=req.body.customerName;
+  const newName=req.body.newName;
+  const sqlUpdate="UPDATE favorites SET customer_name=? WHERE customer_name=?";
+  connection.query(sqlUpdate,[newName,customerName],(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+app.put("/EditCustomerNameInCustomerSignUp",(req,res) =>{
+  const customerName=req.body.customerName;
+  const newName=req.body.newName;
+  const sqlUpdate="UPDATE customer_signUp SET name=? WHERE name=?";
+  connection.query(sqlUpdate,[newName,customerName],(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send("Update done!")
+    }
+  })
+})
+
+app.get("/GetLocation",(req,res) => {
+  const sqlSELECT="SELECT location,customer_name FROM cart_items"
+  connection.query(sqlSELECT,(err,result) =>{
+    if(err){
+     console.log(err)
+    }
+    return res.json({
+      details: result
+    })
   })
 })

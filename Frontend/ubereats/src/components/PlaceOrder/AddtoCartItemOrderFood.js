@@ -1,16 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./OrderFood.css"
 import {Col} from "react-bootstrap";
+var total_final = 0;
+//localStorage.setItem("total",0);
 
-var total=0;
 
 function AddtoCartItemOrderFood({cart}) {
 
-  const val = (JSON.parse(cart.price.replace('$',"")));
+  const[cartTotal,setCartTotal]=useState("");
 
-  if(cart.current_order.data[0]===1){
-    total=total+val;
-  }
+
+var val = (JSON.parse(cart.price.replace("$","")));
+if(cart.current_order.data[0]===1){
+  console.log("Liverpool fc "+ JSON.stringify(cart) )
+  total_final=total_final+val;
+}
+localStorage.setItem("total",total_final);
+
 
   // function total(item){
   //   total+=item;
@@ -27,12 +33,17 @@ function AddtoCartItemOrderFood({cart}) {
      // //   total = total+val;
      // // }
      //  localStorage.setItem("total",total);
-
-     // Object.values(cart).forEach(price => {
-     // total = total+(JSON.parse(cart.price.replace('$','')));
-     // });
+     //
+     // // Object.values(cart).forEach(price => {
+     // //
+     // //   if(cart.current_order.data[0]===1){
+     // //     console.log("liverpool" + JSON.stringify(cart));
+     // //     total = total+(JSON.parse(cart.price.replace('$','')));
+     // //   }
+     //
+     //  });
      // const finalTotal = total;
-      localStorage.setItem("total",total);
+      // localStorage.setItem("total",total);
 
 
      if(cart.current_order.data[0] === 1) {

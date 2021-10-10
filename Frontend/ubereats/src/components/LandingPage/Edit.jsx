@@ -9,6 +9,8 @@ function Edit(){
   const[nameErr,setNameErr]=useState({});
   const[descriptionErr,setDescriptionErr]=useState({});
 
+
+  const[status,setStatus]=useState("");
   const [error,setError]=useState("");
   const[newName,setNewName]= useState("");
   const [newLocation,setNewLocation] = useState("");
@@ -68,20 +70,28 @@ function Edit(){
     setDescriptionErr(descriptionErr);
     return isValid;
   }
-
-
-
-
-
   function editRestaurantName() {
+    Axios.put("http://localhost:3001/EditResNameFav",{
+      resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+      newName:newName
+    })
+    Axios.put("http://localhost:3001/EditResNameDishes",{
+      resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+      newName:newName
+    })
+    Axios.put("http://localhost:3001/EditResNameCart",{
+      resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
+      newName:newName
+    })
       Axios.put("http://localhost:3001/EditName",
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         newName:newName
       })
-      JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]=newName;
       alert("Updated successfully")
-    }
+}
+
+
   function editRestaurantLocation() {
       Axios.put("http://localhost:3001/EditLocation",
       {

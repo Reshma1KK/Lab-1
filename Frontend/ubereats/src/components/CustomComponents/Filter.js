@@ -30,7 +30,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
       getRestuarants(AllRestuarntData);
     })
     .catch(error =>
-      console.error(`Error:{error}`));
+      console.error(error));
   }
 
 

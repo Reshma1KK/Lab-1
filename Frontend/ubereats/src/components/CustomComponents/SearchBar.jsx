@@ -30,7 +30,7 @@ function SearchBar() {
       getRestuarants(AllRestuarntData);
     })
     .catch(error =>
-      console.error(`Error:{error}`));
+      console.error(error));
   }
 
   const getAllDishes = () => {
@@ -43,7 +43,7 @@ function SearchBar() {
           getDishes(allDishes);
       })
       .catch(error =>
-        console.error(`Error:{error}`));
+        console.error(error));
   }
 
   return(
@@ -83,28 +83,26 @@ function SearchBar() {
            }
            else if(((restaurant.location.toLowerCase()).includes(searchTerm.toLowerCase()))
            || ((restaurant.description.toLowerCase()).includes(searchTerm.toLowerCase()))
-           || ((restaurant.restaurantName.toLowerCase()).includes(searchTerm.toLowerCase()))) {
+           || ((restaurant.restaurantName.toLowerCase()).includes(searchTerm.toLowerCase()))){
+         // || restaurant.restaurantName===localStorage.getItem("SearchedRes")) {
            return true;
           }}).map(function(restaurant){
-           return(<Fragment key={restaurant.id} style={{width:"100%"}}>
+           return(<Fragment key={restaurant.id}>
              <Restaurant restaurant={restaurant} />
              </Fragment>
           )
         })
       }
-      {restaurants.filter(function(restaurant) {
-     if(searchTerm===""){
-       return false;
-     }
-     else if(((restaurant.dishes.toLowerCase()).includes(searchTerm.toLowerCase()))) {
-     return true;
-   }}).map(function(restaurant){
-     return(<Fragment key={restaurant.id} >
-       <Restaurant restaurant={restaurant}/>
-       </Fragment>
-    )
-  })
-}
+            {dishes.filter(function(dish) {
+           if(searchTerm===""){
+             return false;
+           }
+           else if(((dish.dish_name.toLowerCase()).includes(searchTerm.toLowerCase()))) {
+           return true;
+         }}).map(function(dish){
+           localStorage.setItem("SearchedRes",dish.res_name)
+        })
+      }
 
 
     </div>

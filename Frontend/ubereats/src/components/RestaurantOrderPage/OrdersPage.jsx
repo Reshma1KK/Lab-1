@@ -16,8 +16,9 @@ function OrdersPage(){
       <div className="container-fluid">
       <h2 style={{textAlign:"center", fontFamily:"Postmates", height:"40px",lineHeight:"10px",marginTop:"60px"}}>Orders</h2>
       <hr />
-        <div className="row">
+        <div className="row" style={{marginBottom:"5%"}}>
           <Filter />
+        <div className="row" style={{marginTop:"5%"}}>
           <div className="col" style={{marginLeft:"10%"}}>
          Customer Name
           </div>
@@ -30,6 +31,7 @@ function OrdersPage(){
           <div className="col">
        Order Status
           </div>
+        </div>
         </div>
         <div className="row">
         <Orders />

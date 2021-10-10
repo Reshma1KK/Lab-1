@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import Axios from "axios"
+import DropdownLocation from "./DropdownLocation";
+
 
 // import "./Modal.css"
 
@@ -7,16 +9,7 @@ export const ModalAddress = ({showModal,setShowModal}) => {
 
 const [location,setLocation]=useState("")
 const name = JSON.parse(localStorage["user"])[0].name;
-  const addAddress = () => {
-    Axios.put("http://localhost:3001/AddtoCart",{
-      location:location,
-      name:name
-    }).then(response =>{
-      console.log("Added to DB!");
-    }).catch(err =>{
-      console.log(err);
-    })
-  }
+
 
     return(
       <>
@@ -32,17 +25,7 @@ const name = JSON.parse(localStorage["user"])[0].name;
               </button>
             </div>
             <div className="modal-body">
-            <input
-            style={{backgroundColor:"#D8E3E7",width:"90%", paddingTop:"10px",paddingBottom:"10px"}}
-            type="text"
-            name="location"
-            className="form-control justify-content-center rounded"
-            onChange = {(e) =>{
-              setLocation(e.target.value);
-            }}
-
-            />
-              <button type="button" className="btn btn-success" style={{borderRadius:"50px"}} onClick={addAddress}>Add</button>
+              <DropdownLocation />
             </div>
           </div>
         </div>

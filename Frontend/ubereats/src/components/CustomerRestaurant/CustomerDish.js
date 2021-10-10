@@ -1,9 +1,10 @@
 import React,{useState } from 'react'
-// import {Link} from "react-router-dom";
+import {useHistory} from "react-router";
 // import { useSpring, animated } from 'react-spring';
 import Axios from "axios";
 import  "../AddtoCart/AddtoCart.css";
 // import "../CustomComponents/Modal.css"
+import ModalDialogue from "../CustomComponents/ModalDialogue.jsx"
 
 // JSON.stringify(localStorage.setItem("cartValue",(JSON.parse(localStorage.getItem("res"))["restaurantName"])));
 function CustomerDish({dish}) {
@@ -14,8 +15,8 @@ function CustomerDish({dish}) {
   // else{
   //   JSON.stringify(localStorage.setItem("cartValue","R&B Tea"))
   // }
-
-
+const history = useHistory();
+const [showModal,setShowModal]=useState(true);
   const[myDish,setMyDish]=useState([]);
 
  const[cart,setCart]=useState([]);
@@ -49,10 +50,10 @@ function CustomerDish({dish}) {
       }
     else{
       if(localStorage.getItem("cartVal")!=dish.res_name){
-        alert(`Your order contains items from ${(localStorage.getItem("cartVal"))}, Do you want to create a new order from ${dish.res_name}`);
-        Axios.delete("http://localhost:3001/AddtoCart")
-        localStorage.setItem("cartVal",dish.res_name)
-        console.log("Deleted!");
+        history.push("/ModalDialogue");
+        // ('#myModal').setShowModal('true');
+        // alert(`Your order contains items from ${(localStorage.getItem("cartVal"))}, Do you want to create a new order from ${dish.res_name}`);
+          // console.log("Deleted!");
       }
       else{
           setCart([...cart,dish]);

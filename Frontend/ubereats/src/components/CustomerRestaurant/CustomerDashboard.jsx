@@ -38,7 +38,7 @@ function CustomerDashboard(){
              (JSON.parse(localStorage.getItem("res"))["restaurantName"]) === (dash.restaurantName) ? getResData(dash) : ""
            )
        }).catch(error =>
-        console.error(`Error:{error}`));
+        console.error(error));
     }
 
 

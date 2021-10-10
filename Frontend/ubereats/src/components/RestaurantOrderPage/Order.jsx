@@ -13,11 +13,13 @@ function Order({order}){
   const[delivery,setDelivery]=useState(null);
   const restaurantName=JSON.parse(localStorage["user"])[0]["restaurantName"];
 
+
   const updateCartTable = () => {
       Axios.put("http://localhost:3001/AddDeliveryStatus",{
         delivery:delivery,
         customerName:order.customer_name,
-        restaurantName:order.restaurant_name
+        restaurantName:order.restaurant_name,
+        temp:order.temp
       })
 
     // alert("Updated successfully!");
@@ -65,8 +67,8 @@ function Order({order}){
           </div>
 
 
-          <button type="button" style={{textAlign:"center",borderRadius:"100%",backgroundColor:"green",width:"40px",height:"35px"}} onClick={()=>{updateCartTable(order.customer_name,order.restaurant_name)}}>✔️</button>
-          
+          <button type="button" style={{textAlign:"center",borderRadius:"100%",backgroundColor:"green",width:"40px",height:"35px"}} onClick={()=>{updateCartTable(order.customer_name,order.restaurant_name,order.temp)}}>✔️</button>
+
       </div>
     </div>
 
