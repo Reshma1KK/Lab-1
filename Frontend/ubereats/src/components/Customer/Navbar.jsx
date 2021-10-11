@@ -9,13 +9,13 @@ function NavBar() {
       <h1 className="heading-home home restuarnt">Uber <span className="heading-eats restuarnt">Eats</span></h1>
       <ul className="nav justify-content-end">
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="http://52.15.59.71:3001/CustomerLandingPage">Looking for food?</a>
+        <a className="nav-link active" aria-current="page" href="http://52.15.59.71:3000/CustomerLandingPage">Looking for food?</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="http://52.15.59.71:3001/CustomerPage">{JSON.parse(localStorage["user"])[0].name}<span style={{color:"green"}}> ,View Account</span></a>
+        <a className="nav-link active" aria-current="page" href="http://52.15.59.71:3000/CustomerPage">{JSON.parse(localStorage["user"])[0].name}<span style={{color:"green"}}> ,View Account</span></a>
         </li>
         <li className="nav-item">
-        <a className="nav-link" href="http://52.15.59.71:3001/" onClick={()=>{localStorage.clear();}}>LogOut</a>
+        <a className="nav-link" href="http://52.15.59.71:3000/" onClick={()=>{localStorage.clear();}}>LogOut</a>
         </li>
       </ul>
     </div>
