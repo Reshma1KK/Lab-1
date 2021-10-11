@@ -117,7 +117,8 @@ function CustomerSignup () {
        <button onClick={customerSignup} type="button" className="btn btn-outline-primary">Continue</button>
        </div>
        <div>
-       <h2 style={{textAlign:"center",fontSize:"1.1rem", fontFamily:"Poppins'"}}>Have an Account?<a href="http://52.15.59.71:3001/CustomerLogin" style={{color:"green", fontSize:"1rem"}}>Sign In</a></h2>
+       <h2 style={{textAlign:"center",fontSize:"1.1rem", fontFamily:"Poppins'"}}>Have an Account?<a href="http://52.15.59.71:3000
+    /CustomerLogin" style={{color:"green", fontSize:"1rem"}}>Sign In</a></h2>
        </div>
       </div>
   );

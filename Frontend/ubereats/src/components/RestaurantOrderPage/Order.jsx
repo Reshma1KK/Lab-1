@@ -37,7 +37,7 @@ function Order({order}){
     <div className="container-fluid">
       <div className="row">
         <div className="col">
-       <a href="http://52.15.59.71:3001/DisplayProfile" onClick={()=>(localStorage.setItem("customer",order.customer_name))}>{order.customer_name}</a>
+       <a href="http://52.15.59.71:3000/DisplayProfile" onClick={()=>(localStorage.setItem("customer",order.customer_name))}>{order.customer_name}</a>
         </div>
         <div className="col">
       {order.DISHES}
