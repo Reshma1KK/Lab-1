@@ -19,19 +19,27 @@ const connection = mysql.createPool({
   port: constants.DB.port,
   database: constants.DB.database,
 });
-// app.use(cors());
-app.use(cors({origin:`http://${ipAddress}:3001`,credentials :true}));
-app.use(express.json(
-  {
-    limit: '50mb'
-  }
-));
-app.use(bodyParser.urlencoded({
-  limit: '50mb',
-  extended: true
-}));
+app.use(cors());
+// app.use(cors({origin:`http://${ipAddress}:3001`,credentials :true}));
+// app.use(express.json(
+//   {
+//     limit: '50mb'
+//   }
+// ));
+// app.use(bodyParser.urlencoded({
+//   limit: '50mb',
+//   extended: true
+// }));
 
-app.listen(() => {
+app.use((req,res,next) =>{
+  res.setHeader("Access-Control-Allow-Origin","http://52.15.59.71:3000");
+  res.setHeader("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT,PATCH,DELETE,UPDATE");
+  res.setHeader("Access-Control-Allow-Headers","X-Requested-With,content-type");
+  res.setHeader("Access-Control-Allow-Credentials",true);
+
+})
+
+app.listen(port() => {
   console.log("Running on port 3001");
 });
 
