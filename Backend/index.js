@@ -31,10 +31,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-
-
-app.listen(3001, () => {
+app.listen(() => {
   console.log("Running on port 3001");
 });
 
