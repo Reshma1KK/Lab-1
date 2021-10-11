@@ -4,6 +4,7 @@ import Axios from "axios";
 import {Row,Col} from "react-bootstrap";
 import Favorite from "./Favorite.js";
 import NavbarAddToCart from "../CustomerRestaurant/NavbarAddToCart.jsx"
+import backendServer from "../../webConfig.js";
 
 
 function Favorites() {
@@ -28,7 +29,7 @@ function Favorites() {
       // Axios.get("http://localhost:3001/Dishes.jsx")
       // .then(response => console.log(response))
       // .catch(err => console.log("failed:",err));
-        Axios.get("http://localhost:3001/Favorites")
+        Axios.get(`${backendServer}/Favorites`)
         .then((response) => {
           const allFav=response.data.details;
             getFavs(allFav);

@@ -2,6 +2,7 @@ import React,{Fragment,useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import CustomerProfile from "./CustomerProfile.js"
+import backendServer from "../../webConfig.js";
 
 
 function Profile() {
@@ -13,7 +14,7 @@ function Profile() {
       getAllProfileData();
     },[]);
     const getAllProfileData = () => {
-          Axios.get("http://localhost:3001/CustomerPage")
+          Axios.get(`${backendServer}/CustomerPage`)
           .then((response) =>{
             const allProfileData = response.data.customer;
             allProfileData.map((customerInfo) =>

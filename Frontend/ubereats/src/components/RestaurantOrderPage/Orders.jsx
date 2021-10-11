@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap";
 import Order from "./Order.jsx";
+import backendServer from "../../webConfig.js";
 
 function Orders() {
 
@@ -17,7 +18,7 @@ function Orders() {
       // Axios.get("http://localhost:3001/Dishes.jsx")
       // .then(response => console.log(response))
       // .catch(err => console.log("failed:",err));
-        Axios.get("http://localhost:3001/OrdersRestaurant")
+        Axios.get(`${backendServer}/OrdersRestaurant`)
         .then((response) => {
           const allOrders=response.data.details;
             getOrders(allOrders);

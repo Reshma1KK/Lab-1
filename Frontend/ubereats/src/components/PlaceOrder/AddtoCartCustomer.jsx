@@ -5,6 +5,7 @@ import {Row,Col} from "react-bootstrap";
 import Navbar from "../Customer/Navbar.jsx"
 import CustomerDish from "../CustomerRestaurant/CustomerDish.js";
 import AddtoCartItemOrderFood from "./AddtoCartItemOrderFood.js";
+import backendServer from "../../webConfig.js";
 
 // import "./Modal.css"
 function AddtoCart (){
@@ -17,7 +18,7 @@ function AddtoCart (){
   },[]);
 
     const getAllCartItems = () => {
-      Axios.get("http://localhost:3001/AddtoCart")
+      Axios.get(`${backendServer}/AddtoCart`)
       .then((response) =>{
         console.log("Inside Cart");
         const cartData = response.data.dashboard;

@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import NavBar from "./NavBar.jsx"
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 function AddDishes() {
 
@@ -40,7 +41,7 @@ function AddDishes() {
   }
 
   const addDish = () => {
-    Axios.post("http://localhost:3001/AddDishes",{
+    Axios.post(`${backendServer}/AddDishes`,{
       dishName:dishName,
       dishIngredients:dishIngredients,
       dishImg:dishImg,

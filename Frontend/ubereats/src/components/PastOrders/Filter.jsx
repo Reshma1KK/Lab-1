@@ -3,7 +3,7 @@ import Axios from "axios";
 import {Col} from "react-bootstrap";
 import CustomerOrderfilter from "./CustomerOrderfilter.js"
 import "../CustomComponents/Filter.css";
-
+import backendServer from "../../webConfig.js";
 
 function Filter() {
 
@@ -25,7 +25,7 @@ const[pickedUpIsChecked,setPickedUpIsChecked] = useState(false);
 
 const getAllOrders = () =>{
 
-    Axios.get("http://localhost:3001/CustomerFilter")
+    Axios.get(`${backendServer}/CustomerFilter`)
     .then((response) => {
       const allOrders=response.data.details;
         getOrders(allOrders);

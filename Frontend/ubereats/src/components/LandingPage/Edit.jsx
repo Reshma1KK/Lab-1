@@ -2,6 +2,7 @@ import React,{useState,Fragment} from 'react';
 import NavBar from "./NavBar.jsx";
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 
 function Edit(){
@@ -71,19 +72,19 @@ function Edit(){
     return isValid;
   }
   function editRestaurantName() {
-    Axios.put("http://localhost:3001/EditResNameFav",{
+    Axios.put(`${backendServer}/EditResNameFav`,{
       resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
       newName:newName
     })
-    Axios.put("http://localhost:3001/EditResNameDishes",{
+    Axios.put(`${backendServer}/EditResNameDishes`,{
       resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
       newName:newName
     })
-    Axios.put("http://localhost:3001/EditResNameCart",{
+    Axios.put(`${backendServer}/EditResNameCart`,{
       resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
       newName:newName
     })
-      Axios.put("http://localhost:3001/EditName",
+      Axios.put(`${backendServer}/EditName`,
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         newName:newName
@@ -93,7 +94,7 @@ function Edit(){
 
 
   function editRestaurantLocation() {
-      Axios.put("http://localhost:3001/EditLocation",
+      Axios.put(`${backendServer}/EditLocation`,
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         newLocation:newLocation,
@@ -101,7 +102,7 @@ function Edit(){
       alert("Updated successfully")
     }
   function editRestaurantImg() {
-        Axios.put("http://localhost:3001/EditImg",
+        Axios.put(`${backendServer}/EditImg`,
         {
           resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
           newImg:newImg
@@ -109,7 +110,7 @@ function Edit(){
         alert("Updated successfully")
       }
   function editRestaurantDescription() {
-        Axios.put("http://localhost:3001/EditDescription",
+        Axios.put(`${backendServer}/EditDescription`,
         {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         newDescription:newDescription
@@ -117,7 +118,7 @@ function Edit(){
         alert("Updated successfully")
       }
   function editRestaurantContact() {
-        Axios.put("http://localhost:3001/EditContact",
+        Axios.put(`${backendServer}/EditContact`,
         {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         newContact:newContact
@@ -125,7 +126,7 @@ function Edit(){
         alert("Updated successfully")
       }
   function editRestaurantTimings() {
-        Axios.put("http://localhost:3001/EditTimings",
+        Axios.put(`${backendServer}/EditTimings`,
         {
        resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
        newTimings:newTimings

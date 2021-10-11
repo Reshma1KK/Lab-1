@@ -2,6 +2,7 @@ import React, {Fragment,useState,useEffect} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "./Form.jsx";
 import Axios from "axios";
+import backendServer from "../../webConfig.js";
 
 
 function Dashboard(){
@@ -30,7 +31,7 @@ function Dashboard(){
     },[]);
 
     const getAllResData = () =>{
-      Axios.get("http://localhost:3001/RestaurantLanding")
+      Axios.get(`${backendServer}/RestaurantLanding`)
       .then((response) => {
          // if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
            const allResData = response.data.dashboard;

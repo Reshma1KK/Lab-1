@@ -4,6 +4,7 @@ import Axios from "axios";
 import {Col} from "react-bootstrap";
 import Restaurant from "./RestaurantComponents.js"
 import "./Filter.css";
+import backendServer from "../../webConfig.js";
 
 
 function Filter() {
@@ -24,7 +25,7 @@ const[veganIsChecked,setVeganIsChecked] = useState(false);
   },[]);
 
   const getAllRestaurants = () =>{
-    Axios.get("http://localhost:3001/RestaurantDisplay")
+    Axios.get(`${backendServer}/RestaurantDisplay`)
     .then((response) => {
       const AllRestuarntData=response.data.details;
       getRestuarants(AllRestuarntData);

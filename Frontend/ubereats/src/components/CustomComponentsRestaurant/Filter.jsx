@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Axios from "axios";
 import {Col} from "react-bootstrap";
 import Order from "../RestaurantOrderPage/Order.jsx"
+import backendServer from "../../webConfig.js";
 // import "../CustomComponents/Filter.css";
 
 
@@ -22,7 +23,7 @@ const[cancelledOrderIsChecked,setCancelledOrderIsChecked] = useState(false);
 
 const getAllOrders = () =>{
 
-    Axios.get("http://localhost:3001/CartFilter")
+    Axios.get(`${backendServer}/CartFilter`)
     .then((response) => {
       const allOrders=response.data.details;
         getOrders(allOrders);

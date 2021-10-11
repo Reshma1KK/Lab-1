@@ -2,6 +2,7 @@ import React,{useState,Fragment} from 'react';
 import NavBar from "./NavBar.jsx";
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 
 function EditDishes(){
@@ -40,7 +41,7 @@ function EditDishes(){
 
 
   function editDishName() {
-      Axios.put("http://localhost:3001/EditDishName",
+      Axios.put(`${backendServer}/EditDishName`,
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         dishName:localStorage.getItem("val"),
@@ -50,7 +51,7 @@ function EditDishes(){
       window.open("/RestaurantLanding","_self");
     }
     function editDishImg() {
-          Axios.put("http://localhost:3001/EditDishImg",
+          Axios.put(`${backendServer}/EditDishImg`,
           {
             resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
             dishName:localStorage.getItem("val"),
@@ -61,7 +62,7 @@ function EditDishes(){
         }
 
   function editDishIngredients() {
-      Axios.put("http://localhost:3001/EditIngredients",
+      Axios.put(`${backendServer}/EditIngredients`,
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         dishName:localStorage.getItem("val"),
@@ -71,7 +72,7 @@ function EditDishes(){
       window.open("/RestaurantLanding","_self");
     }
   function editDishPrice() {
-      Axios.put("http://localhost:3001/EditPrice",
+      Axios.put(`${backendServer}/EditPrice`,
       {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         dishName:localStorage.getItem("val"),
@@ -81,7 +82,7 @@ function EditDishes(){
       window.open("/RestaurantLanding","_self");
     }
   function editDishDescription() {
-        Axios.put("http://localhost:3001/EditDishDescription",
+        Axios.put(`${backendServer}/EditDishDescription`,
         {
           resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
           dishName:localStorage.getItem("val"),
@@ -91,7 +92,7 @@ function EditDishes(){
         window.open("/RestaurantLanding","_self");
       }
   function editDishCategory() {
-        Axios.put("http://localhost:3001/EditCategory",
+        Axios.put(`${backendServer}/EditCategory`,
         {
         resName:JSON.parse(localStorage.getItem("user"))[0]["restaurantName"],
         dishName:localStorage.getItem("val"),

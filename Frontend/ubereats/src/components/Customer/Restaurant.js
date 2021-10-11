@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import Axios from "axios";
+import backendServer from "../../webConfig.js";
 
 
 function Restaurant({restaurant}){
@@ -21,7 +22,7 @@ function addToFavorites() {
   // const name=JSON.parse(localStorage["user"])[0].name;
   // // console.log(restaurant.restaurantName);
   setFavorite([...favorite,restaurant]);
-  Axios.post("http://localhost:3001/Favorites",{
+  Axios.post(`${backendServer}/Favorites`,{
     name:name,
     restaurantName:restaurantName,
     restaurantLocation:restaurantLocation,
@@ -32,7 +33,7 @@ function addToFavorites() {
 
   function getRestaurantLanding(){
     console.log("liverpool fc");
-    Axios.get("http://localhost:3001/Restaurant")
+    Axios.get(`${backendServer}/Restaurant`)
     .then((response) => {
 
           // console.log("id",(restaurant.id)-1)

@@ -16,7 +16,7 @@ function Restaurant({restaurant}){
             <li className="list-group-item">{`${restaurant.timings}`}</li>
           </ul>
           <div className="card-body">
-          <a href="http://localhost:3000/" className="card-link" style={{color:"#79B4B7"}}>Order Now</a>
+          <a href="http://52.15.59.71:3001/" className="card-link" style={{color:"#79B4B7"}}>Order Now</a>
         </div>
         </div>
       )

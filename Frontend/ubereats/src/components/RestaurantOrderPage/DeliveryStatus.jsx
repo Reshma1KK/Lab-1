@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {Row,Col} from "react-bootstrap";
 import Axios from "axios"
+import backendServer from "../../webConfig.js";
 
 function DeliveryStatus() {
 
@@ -22,7 +23,7 @@ const customerName=names[0];
 
 
 const updateCartTable = () => {
-    Axios.put("http://localhost:3001/AddDeliveryStatus",{
+    Axios.put(`${backendServer}/AddDeliveryStatus`,{
       delivery:delivery,
       customerName:customerName,
       restaurantName:restaurantName

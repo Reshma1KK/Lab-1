@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CustomerOrder from "./CustomerOrder.js"
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 function CustomerOrders() {
 
@@ -15,7 +16,7 @@ function CustomerOrders() {
       },[]);
 
       const getAllCustomerData = () =>{
-        Axios.get("http://localhost:3001/CustomerHistory")
+        Axios.get(`${backendServer}/CustomerHistory`)
         .then((response) => {
            // if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
              const allCustomerData = response.data.details;

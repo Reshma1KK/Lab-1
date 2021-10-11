@@ -4,6 +4,7 @@ import Navbar from "./Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.css'; // or include from a CDN
 import 'react-bootstrap-country-select/dist/react-bootstrap-country-select.css';
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 
 function EditCustomerProfile() {
@@ -45,20 +46,20 @@ function EditCustomerProfile() {
   }
 
   const editCustomerName = () =>{
-  Axios.put("http://localhost:3001/EditCustomerNameInCartItems",{
+  Axios.put(`${backendServer}/EditCustomerNameInCartItems`,{
     customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
     newName:newName
   }).catch(err =>(
     console.log(err)
   ))
-  Axios.put("http://localhost:3001/EditCustomerNameInFav",{
+  Axios.put(`${backendServer}/EditCustomerNameInFav`,{
     customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
     newName:newName
   }).catch(err =>(
     console.log(err)
   ))
 
-  Axios.put("http://localhost:3001/EditCustomerNameInCustomerSignUp",{
+  Axios.put(`${backendServer}/EditCustomerNameInCustomerSignUp`,{
     customerName:JSON.parse(localStorage.getItem("user"))[0]["name"],
     newName:newName
   }).catch(err =>(
@@ -71,7 +72,7 @@ function EditCustomerProfile() {
 
 
   const uploadPhoto = () =>{
-  Axios.put("http://localhost:3001/EditCustomerPhoto",{
+  Axios.put(`${backendServer}/EditCustomerPhoto`,{
     customerName:customerName,
     customerPicture:customerPicture
   })
@@ -80,7 +81,7 @@ function EditCustomerProfile() {
   }
 
   const editDOB = () =>{
-  Axios.put("http://localhost:3001/EditCustomerDOB",{
+  Axios.put(`${backendServer}/EditCustomerDOB`,{
     customerName:customerName,
     dob:dob
   })
@@ -89,35 +90,35 @@ function EditCustomerProfile() {
   }
 
   const editCity = () =>{
-  Axios.put("http://localhost:3001/EditCustomerCity",{
+  Axios.put(`${backendServer}/EditCustomerCity`,{
     customerName:customerName,
     city:city
   })
 alert("Updated successfully!");
   }
   const editState = () =>{
-  Axios.put("http://localhost:3001/EditCustomerState",{
+  Axios.put(`${backendServer}/EditCustomerState`,{
     customerName:customerName,
     state:state
   })
 alert("Updated successfully!");
   }
   const editCountry = () =>{
-  Axios.put("http://localhost:3001/EditCustomerCountry",{
+  Axios.put(`${backendServer}/EditCustomerCountry`,{
     customerName:customerName,
     country:country
   })
 alert("Updated successfully!");
   }
   const editNickName = () =>{
-  Axios.put("http://localhost:3001/EditNickName",{
+  Axios.put(`${backendServer}/EditNickName`,{
     customerName:customerName,
     nickName:nickName
   })
 alert("Updated successfully!");
   }
   const editEmail = () =>{
-  Axios.put("http://localhost:3001/EditCustomerEmail",{
+  Axios.put(`${backendServer}/EditCustomerEmail`,{
     customerName:customerName,
     email:email
   })
@@ -125,7 +126,7 @@ alert("Updated successfully!");
 
   }
   const editNumber = () =>{
-  Axios.put("http://localhost:3001/EditCustomerNumber",{
+  Axios.put(`${backendServer}/EditCustomerNumber`,{
     customerName:customerName,
     phone:phone
   })

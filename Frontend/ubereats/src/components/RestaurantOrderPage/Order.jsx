@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import {Link} from "react-router-dom";
 import {Row,Col} from "react-bootstrap";
 import Axios from "axios"
+import backendServer from "../../webConfig.js";
 
 
  // const customer=[];
@@ -15,7 +16,7 @@ function Order({order}){
 
 
   const updateCartTable = () => {
-      Axios.put("http://localhost:3001/AddDeliveryStatus",{
+      Axios.put(`${backendServer}/AddDeliveryStatus`,{
         delivery:delivery,
         customerName:order.customer_name,
         restaurantName:order.restaurant_name,
@@ -36,7 +37,7 @@ function Order({order}){
     <div className="container-fluid">
       <div className="row">
         <div className="col">
-       <a href="http://localhost:3000/DisplayProfile" onClick={()=>(localStorage.setItem("customer",order.customer_name))}>{order.customer_name}</a>
+       <a href="http://52.15.59.71:3001/DisplayProfile" onClick={()=>(localStorage.setItem("customer",order.customer_name))}>{order.customer_name}</a>
         </div>
         <div className="col">
       {order.DISHES}

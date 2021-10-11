@@ -1,6 +1,7 @@
 import React,{useState} from "react"
 import Axios from "axios"
 import {Row,Col} from "react-bootstrap";
+import backendServer from "../../webConfig.js";
 
 
 function Location ({loc}) {
@@ -10,7 +11,7 @@ function Location ({loc}) {
   const [newLocation,setNewLocation]=useState("")
 
   const addOldAddress = () => {
-    Axios.put("http://localhost:3001/AddtoCart/Old",{
+    Axios.put(`${backendServer}/AddtoCart/Old`,{
       newLocation:newLocation,
       currentOrder:1
     }).then(response =>{
@@ -20,7 +21,7 @@ function Location ({loc}) {
     })
   }
   const addNewAddress = () => {
-    Axios.put("http://localhost:3001/AddtoCart/New",{
+    Axios.put(`${backendServer}/AddtoCart/New`,{
       location:location,
       currentOrder:1
     }).then(response =>{

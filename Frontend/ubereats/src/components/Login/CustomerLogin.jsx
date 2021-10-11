@@ -3,6 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import NavigationBar from "../LogOut/NavigationBar.jsx";
 import Links from "../LogOut/link.js";
+import backendServer from "../../webConfig.js";
+
+// axios.post(`${backendServer}/creategroup`, groupDetails).then((response) => {
 
 function CustomerLogin() {
 
@@ -30,7 +33,7 @@ function CustomerLogin() {
       e.preventDefault();
       const isValid = formValidation();
       if(isValid){
-      Axios.post("http://localhost:3001/CustomerLogin",{
+      Axios.post(`${backendServer}/CustomerLogin`,{
         email:email,
         password:password
       }).then((response) => {

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Reciept from "./Reciept.jsx"
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap"
+import backendServer from "../../webConfig.js";
 
 function CreateReciept({}) {
 
@@ -15,7 +16,7 @@ function CreateReciept({}) {
       },[]);
 
       const getAllCustomerData = () =>{
-        Axios.get("http://localhost:3001/CustomerReciept")
+        Axios.get(`${backendServer}/CustomerReciept`)
         .then((response) => {
            // if((JSON.parse(localStorage.getItem("user"))[0]["restaurantName"]) === (dash.restaurantName))
              const allCustomerData = response.data.details;

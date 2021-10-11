@@ -5,6 +5,7 @@ import Restaurant from "./Restaurant.js"
 // import RestaurantsNearYou from "./RestaurantsNearYou.js"
 import SearchBar from "../CustomComponents/SearchBar.jsx"
 import Filter from "../CustomComponents/Filter.js"
+import backendServer from "../../webConfig.js";
 
 
 function RestaurantDisplay(){
@@ -15,7 +16,7 @@ function RestaurantDisplay(){
     },[]);
 
   const getAllRestaurants = () =>{
-    Axios.get("http://localhost:3001/RestaurantDisplay")
+    Axios.get(`${backendServer}/RestaurantDisplay`)
     .then((response) => {
       const AllRestuarntData=response.data.details;
       getRestuarants(AllRestuarntData);

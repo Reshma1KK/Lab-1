@@ -22,14 +22,14 @@ function NavigationBar (props) {
     <li className = "nav-item" >
     <a className = "nav-link active"
     aria-current = "page"
-    href = "http://localhost:3000/" style={{color:"white"}}> Home </a> </li >
+    href = "http://52.15.59.71:3001/" style={{color:"white"}}> Home </a> </li >
     <li className = "nav-item" >
     <a className = "nav-link"
-    href = "http://localhost:3000/CustomerSignup" style={{color:"white"}}> Customer SignUp < /a>
+    href = "http://52.15.59.71:3001/CustomerSignup" style={{color:"white"}}> Customer SignUp < /a>
     </li>
     <li className = "nav-item">
     <a className = "nav-link"
-    href = "http://localhost:3000/RestaurantSignup" style={{color:"white"}}> Restaurant SignUp < /a>
+    href = "http://52.15.59.71:3001/RestaurantSignup" style={{color:"white"}}> Restaurant SignUp < /a>
     </li>
     <li className = "nav-item dropdown" >
     </li>

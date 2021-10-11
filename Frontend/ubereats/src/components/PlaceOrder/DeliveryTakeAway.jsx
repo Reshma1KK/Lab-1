@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 import Axios from "axios"
 import {Row,Col} from "react-bootstrap";
+import backendServer from "../../webConfig.js";
 
 function DeliveryTakeAway() {
 
   const[status,setStatus]=useState(null);
 
   const storeStatus = () => {
-    Axios.post("http://localhost:3001/AddtoCart/DeliveryStatus",{
+    Axios.post(`${backendServer}/AddtoCart/DeliveryStatus`,{
       status:status,
       currentOrder:1
     })

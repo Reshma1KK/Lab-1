@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import Links from "../LogOut/link.js"
+import backendServer from "../../webConfig.js";
 
 
 function CustomerSignup () {
@@ -21,7 +22,7 @@ function CustomerSignup () {
     e.preventDefault();
     const isValid = formValidation();
     if(isValid){
-      Axios.post("http://localhost:3001/CustomerSignup", {
+      Axios.post(`${backendServer}/CustomerSignup`, {
         name:name,
         email:email,
         password:password
@@ -116,7 +117,7 @@ function CustomerSignup () {
        <button onClick={customerSignup} type="button" className="btn btn-outline-primary">Continue</button>
        </div>
        <div>
-       <h2 style={{textAlign:"center",fontSize:"1.1rem", fontFamily:"Poppins'"}}>Have an Account?<a href="http://localhost:3000/CustomerLogin" style={{color:"green", fontSize:"1rem"}}>Sign In</a></h2>
+       <h2 style={{textAlign:"center",fontSize:"1.1rem", fontFamily:"Poppins'"}}>Have an Account?<a href="http://52.15.59.71:3001/CustomerLogin" style={{color:"green", fontSize:"1rem"}}>Sign In</a></h2>
        </div>
       </div>
   );

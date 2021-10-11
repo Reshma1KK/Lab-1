@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import NavigationBar from "../LogOut/NavigationBar.jsx"
 import Links from "../LogOut/link.js"
+import backendServer from "../../webConfig.js";
 
 function RestaurantLogin() {
 
@@ -20,7 +21,7 @@ function RestaurantLogin() {
       const isValid = formValidation();
       if(isValid){
         const user={email,password};
-        Axios.post("http://localhost:3001/RestaurantLogin",
+        Axios.post(`${backendServer}/RestaurantLogin`,
         user
         ).then((response) => {
         if(response.data.message){

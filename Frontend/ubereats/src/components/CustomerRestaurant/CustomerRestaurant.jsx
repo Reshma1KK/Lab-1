@@ -5,6 +5,7 @@ import CustomerDashboard from "./CustomerDashboard.jsx";
 import CustomerDishes from "./CustomerDishes.jsx";
 import NavbarAddToCart from "./NavbarAddToCart.jsx"
 
+
 function CustomerRestaurant (){
 
 const [cartItems,setCartItems]= useState([]);

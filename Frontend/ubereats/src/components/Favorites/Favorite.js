@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import Axios from "axios";
+import backendServer from "../../webConfig.js";
 
 
 function Favorite({fav}){
@@ -13,7 +14,7 @@ function Favorite({fav}){
 
 
   function getRestaurantLanding(){
-    Axios.get("http://localhost:3001/Favorites")
+    Axios.get(`${backendServer}/Favorites`)
     // JSON.parse(localStorage.getItem("res"))["restaurantName"])
     console.log(fav.restaurant_name);
     var tempRestaurantObj = {"restaurantName":fav.restaurant_name}

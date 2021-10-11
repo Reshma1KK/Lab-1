@@ -4,6 +4,7 @@ import {Col} from "react-bootstrap";
 import Restaurant from "./RestaurantComponents.js"
 import Axios from "axios"
 import CustomerDish from "../CustomerRestaurant/CustomerDish.js"
+import backendServer from "../../webConfig.js";
 
 function SearchBar() {
 
@@ -24,7 +25,7 @@ function SearchBar() {
     },[]);
 
   const getAllRestaurants = () =>{
-    Axios.get("http://localhost:3001/RestaurantDisplay")
+    Axios.get(`${backendServer}/RestaurantDisplay`)
     .then((response) => {
       const AllRestuarntData=response.data.details;
       getRestuarants(AllRestuarntData);
@@ -37,7 +38,7 @@ function SearchBar() {
     // Axios.get("http://localhost:3001/Dishes.jsx")
     // .then(response => console.log(response))
     // .catch(err => console.log("failed:",err));
-      Axios.get("http://localhost:3001/Dishes")
+      Axios.get(`${backendServer}/Dishes`)
       .then((response) => {
         const allDishes=response.data.dishes;
           getDishes(allDishes);

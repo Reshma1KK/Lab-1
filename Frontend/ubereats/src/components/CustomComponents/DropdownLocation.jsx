@@ -1,6 +1,7 @@
 import React,{useState,useEffect,Fragment} from 'react'
 import Axios from "axios"
 import Location from "./Location.js"
+import backendServer from "../../webConfig.js";
 
   function DropdownLocation () {
 
@@ -15,7 +16,7 @@ import Location from "./Location.js"
 
 
 const getAllLocation = () =>{
-  Axios.get("http://localhost:3001/GetLocation")
+  Axios.get(`${backendServer}/GetLocation`)
   .then((response) =>{
     const allLoc=response.data.details;
     allLoc.map((loc) =>

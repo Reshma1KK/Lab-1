@@ -5,6 +5,7 @@ import Axios from "axios";
 import  "../AddtoCart/AddtoCart.css";
 // import "../CustomComponents/Modal.css"
 import ModalDialogue from "../CustomComponents/ModalDialogue.jsx"
+import backendServer from "../../webConfig.js";
 
 // JSON.stringify(localStorage.setItem("cartValue",(JSON.parse(localStorage.getItem("res"))["restaurantName"])));
 function CustomerDish({dish}) {
@@ -37,7 +38,7 @@ const [showModal,setShowModal]=useState(true);
         localStorage.setItem("cartVal",dish.res_name)
         setCart([...cart,dish]);
         // JSON.stringify(localStorage.setItem("cartValue",dish.res_name));
-        Axios.post("http://localhost:3001/AddtoCart",{
+        Axios.post(`${backendServer}/AddtoCart`,{
           customerName:customerName,
           customerEmail:customerEmail,
           dishName:dishName,
@@ -52,13 +53,12 @@ const [showModal,setShowModal]=useState(true);
       if(localStorage.getItem("cartVal")!=dish.res_name){
         history.push("/ModalDialogue");
         // ('#myModal').setShowModal('true');
-        // alert(`Your order contains items from ${(localStorage.getItem("cartVal"))}, Do you want to create a new order from ${dish.res_name}`);
           // console.log("Deleted!");
       }
       else{
           setCart([...cart,dish]);
           // JSON.stringify(localStorage.setItem("cartValue",dish.res_name));
-          Axios.post("http://localhost:3001/AddtoCart",{
+          Axios.post(`${backendServer}/AddtoCart`,{
             customerName:customerName,
             customerEmail:customerEmail,
             dishName:dishName,
@@ -85,13 +85,12 @@ const [showModal,setShowModal]=useState(true);
       //     alert("Items added to shopping Cart")
       // }
     //         else{
-    //           alert(`Your oder contains items from ${localStorage.getItem("cartValue")}, Do you want to create a new order from ${dish.res_name}`);
+    //
     //         }
     // }
 
 
     // else{
-    //   alert(`Your oder contains items from ${(dish.res_name)[dish.id-1]}, Do you want to create a new order from ${dish.res_name}`);
     // }
   // };
 
@@ -113,7 +112,6 @@ const [showModal,setShowModal]=useState(true);
   //     <div classNameName="Dish" key={idx}>
   //     <h3>{dish.name}</h3>
   //     <h4>{dish.cost}</h4>
-  //     <img src={`data:image/jpeg;base64,${dish.dish_img}`} alt="cart-img" />
   //     <button type="button" onClick={()=>removeFromCart(dish)}>Remove</button>
   //     </div>
   //   })}

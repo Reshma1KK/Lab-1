@@ -6,6 +6,7 @@ import AddtoCartCustomer from "./AddtoCartCustomer.jsx"
 import {Row,Col} from "react-bootstrap";
 import {ModalAddress} from "../CustomComponents/ModalAddress.js"
 import DeliveryTakeAway from "./DeliveryTakeAway.jsx"
+import backendServer from "../../webConfig.js";
 
 
 function OrderFood({total}){
@@ -42,7 +43,7 @@ function OrderFood({total}){
 
 
     const OrderPlaced = () => {
-      Axios.put("http://localhost:3001/AddtoCart/OrderPlaced",{
+      Axios.put(`${backendServer}/AddtoCart/OrderPlaced`,{
         currentOrder:currentOrder,
         name:name,
         date:date,

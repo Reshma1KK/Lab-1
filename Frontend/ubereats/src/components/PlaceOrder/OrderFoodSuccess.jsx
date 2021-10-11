@@ -8,6 +8,7 @@ import {ModalAddress} from "../CustomComponents/ModalAddress.js"
 import DeliveryTakeAway from "./DeliveryTakeAway.jsx"
 
 
+
 function OrderFoor({total}){
 
 

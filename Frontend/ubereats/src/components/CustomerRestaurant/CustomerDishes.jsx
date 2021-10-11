@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import {Row,Col} from "react-bootstrap";
 import CustomerDish from "./CustomerDish.js";
+import backendServer from "../../webConfig.js";
 
 
 function CustomerDishes() {
@@ -27,7 +28,7 @@ function CustomerDishes() {
       // Axios.get("http://localhost:3001/Dishes.jsx")
       // .then(response => console.log(response))
       // .catch(err => console.log("failed:",err));
-        Axios.get("http://localhost:3001/Dishes")
+        Axios.get(`${backendServer}/Dishes`)
         .then((response) => {
           const allDishes=response.data.dishes;
             getDishes(allDishes);

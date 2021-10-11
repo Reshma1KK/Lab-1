@@ -2,6 +2,7 @@ import React from 'react'
 import AddtoCart from "../AddtoCart/AddtoCart.jsx"
 import Axios from "axios"
 import {useHistory} from "react-router";
+import backendServer from "../../webConfig.js";
 // import image from "./addtocart.jpeg"
 
 import "./Modal.css"
@@ -18,7 +19,7 @@ const goBack = (e) =>{
 }
 
 const getNewOrder = () =>{
-  Axios.delete("http://localhost:3001/AddtoCart")
+  Axios.delete(`${backendServer}/AddtoCart`)
 localStorage.setItem("cartVal",JSON.parse(localStorage.getItem("res"))["restaurantName"])
     history.goBack();
   console.log("Deleted!");
