@@ -52,7 +52,7 @@ function CustomerProfile({customerInfo}){
       <div className="col-lg-7 col-md-6 pl-xl-3">
         <h5 className="font-weight-bold text-black">Find My Favorites: </h5>
         <Link to="/Favorites">
-        <p><a href="http://52.15.59.71:3001/Favorites" style={{color:"black"}}>Favorites</a></p>
+        <p><a href="http://52.15.59.71:3000/Favorites" style={{color:"black"}}>Favorites</a></p>
         </Link>
         <h5 className="font-weight-bold text-black">About: </h5>
         <p>{`${customerInfo.about}`}</p>
