@@ -19,8 +19,8 @@ const connection = mysql.createPool({
   port: constants.DB.port,
   database: constants.DB.database,
 });
-app.use(cors());
-// app.use(cors({origin:`http://${ipAddress}:3001`,credentials :true}));
+// app.use(cors());
+app.use(cors({origin:`http://${ipAddress}:3001`,credentials :true}));
 app.use(express.json(
   {
     limit: '50mb'
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 
 
 
-app.listen(52.15.59.71:3001, () => {
+app.listen(3001, () => {
   console.log("Running on port 3001");
 });
 
