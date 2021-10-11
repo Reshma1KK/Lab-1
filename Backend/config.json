@@ -4,7 +4,10 @@
     "username":"root",
     "password":"password",
     "port":3306,
-    "database":"UberEatsDB"
+    "database":"UberEatsDB",
+    "debug": false,
+    "connectionLimit": 100,
+    "multipleStatements": true,
   },
   "secret":"UberEatsDatabase",
   "frontEnd":"http://52.15.59.71:3000"
