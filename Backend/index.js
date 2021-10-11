@@ -19,7 +19,7 @@ const connection = mysql.createPool({
   port: constants.DB.port,
   database: constants.DB.database,
 });
-app.use(cors({origin:`http://${ipAddress}:3001`,credentials :true}));
+app.use(cors({origin:`http://${ipAddress}:3000`,credentials :true}));
 app.use(express.json(
   {
     limit: '50mb'
